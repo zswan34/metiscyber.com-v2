@@ -7,13 +7,14 @@
         <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #333943;
-                color: #898989;
-                font-family: 'Lato', sans-serif;
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
@@ -64,16 +65,30 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
 
             <div class="content">
                 <div class="title m-b-md">
                     {{ config('app.name') }}
                 </div>
-
                 <div class="links">
-                    <a href="{{ route('get-sign-in') }}">Enter</a>
+                    <a href="{{ route('get-sign-in') }}">Sign In</a>
+                    <a href="{{ route('get-create-account') }}">Register</a>
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

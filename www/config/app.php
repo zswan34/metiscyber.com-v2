@@ -15,6 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'geo_locate_api_key' => env('IP_LOCATION_API_KEY', null),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -166,6 +167,8 @@ return [
          * Package Service Providers...
          */
 
+        Jenssegers\Agent\AgentServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -174,6 +177,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\AgentServiceProvider::class,
+
 
     ],
 
@@ -190,6 +195,8 @@ return [
 
     'aliases' => [
 
+        'Adldap' => Adldap\Laravel\Facades\Adldap::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
