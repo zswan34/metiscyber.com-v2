@@ -3,7 +3,7 @@
 
     <!-- Brand demo (see assets/css/demo/demo.css) -->
     <div class="app-brand demo">
-        <img style="width: 75%;" src="{{ asset('assets/logos/m-nb-w-logo.png') }}" alt="MetisNet">
+        <img style="width: 75%;" src="{{ asset('assets/logos/mc-nb-w-logo.png') }}" alt="MetisNet">
         <a href="{{ route('get-index') }}" class="app-brand-text demo sidenav-text font-weight-normal ml-2">
             <!--<span style="position: relative; bottom: -5px; left: -10px; font-size: 9px;">2.0</span>-->
         </a>

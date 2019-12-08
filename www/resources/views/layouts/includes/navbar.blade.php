@@ -3,7 +3,7 @@
 
     <!-- Brand demo (see assets/css/demo/demo.css) -->
     <a href="{{ route('get-index') }}" class="navbar-brand app-brand demo d-lg-none py-0 mr-4">
-        <img src="{{ asset('assets/logos/m-nb-logo.png') }}" alt="MetisNet" style="width: 100px;">
+        <img src="{{ asset('assets/logos/mc-nb-logo.png') }}" alt="MetisNet" style="width: 100px;">
         <!--<span class="app-brand-text demo font-weight-normal ml-2">Appwork</span>-->
     </a>
 

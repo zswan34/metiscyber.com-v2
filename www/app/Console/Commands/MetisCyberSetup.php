@@ -4,21 +4,21 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class MetisnetSetup extends Command
+class MetisCyberSetup extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'metisnet:setup';
+    protected $signature = 'metis:setup';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Setup MetisNet Application';
+    protected $description = 'Metis Seeder';
 
     /**
      * Create a new command instance.
@@ -62,5 +62,4 @@ class MetisnetSetup extends Command
         $this->call('migrate:refresh');
         $this->call('db:seed');
     }
-
 }

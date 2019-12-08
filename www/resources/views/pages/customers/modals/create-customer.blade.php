@@ -26,14 +26,31 @@
                         </div>
 
                         <div class="form-group col-md-6 col-sm-12">
-                            <label for="customer-assigned" class="form-label">Assigned To</label>
+                            <label for="customer-assigned" class="form-label">Assign to</label>
                             <select class="form-control select2" id="customer-assigned" name="customer-assigned">
-                                @foreach(\App\User::all() as $user)
+                                @foreach(\App\User::where('employee', true)->get() as $user)
                                     <option value="{{ $user->uid }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="customer-life-cycle" class="form-label">Life Cycle Stage</label>
+                            <select class="form-control select2" id="customer-life-cycle" name="customer-life-cycle">
+                                @foreach(\App\LifeCycle::all() as $lifeCycle)
+                                    <option value="{{ $lifeCycle->value }}">{{ $lifeCycle->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="customer-lead-status" class="form-label">Customer Status</label>
+                            <select class="form-control select2" id="customer-lead-status" name="customer-lead-status">
+                                @foreach(\App\LeadStatus::all() as $leadStatus)
+                                    <option value="{{ $leadStatus->value }}">{{ $leadStatus->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group col">

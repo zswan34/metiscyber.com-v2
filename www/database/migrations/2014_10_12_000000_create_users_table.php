@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('phone_secondary')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');
             $table->boolean('ldap_user')->default(0);
             $table->boolean('disadvantaged')->default(0);
@@ -44,14 +45,16 @@ class CreateUsersTable extends Migration
             $table->string('city')->nullable();
             $table->string('type')->nullable();
             $table->unsignedBigInteger('user_type_id')->nullable();
+            $table->unsignedBigInteger('customer_type_id')->nullable();
             $table->boolean('employee')->default(0);
-            $table->boolean('client')->default(0);
-            $table->unsignedBigInteger('client_type_id')->nullable();
+            $table->boolean('customer')->default(0);
             $table->timestamp('date_of_birth')->nullable();
             $table->unsignedBigInteger('created_by_id')->nullable();
             $table->unsignedBigInteger('timezone_id')->nullable();
             $table->unsignedBigInteger('avatar_file_id')->nullable();
             $table->unsignedBigInteger('auth_type_id')->default(1);
+            $table->unsignedBigInteger('life_cycle_id')->nullable();
+            $table->unsignedBigInteger('lead_status_id')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

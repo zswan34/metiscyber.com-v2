@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/budgets/builder', ['uses' => 'BudgetController@getBudgetBuilder'])->name('get-budget-builder');
 
         Route::get('/customers', ['uses' => 'CustomerController@getCustomers'])->name('get-customers');
+        Route::get('/customers/{customer_uid}', ['uses' => 'CustomerController@getCustomer'])->name('get-customer');
         Route::post('/customers', ['uses' => 'CustomerController@postCustomersCreate'])->name('post-customers-create');
 
         Route::get('/domains', ['uses' => 'DomainController@getDomainAccounts'])->name('get-domains');
@@ -79,7 +80,7 @@ Route::middleware('auth')->group(function() {
 
             Route::get('/auth', ['uses' => 'AuthController@getAuthUserApi'])->name('get-auth-user-api');
             Route::get('/customers', ['uses' => 'CustomerController@getCustomersApi'])->name('get-customers-api');
-
+            Route::get('/customers/{customer_uid}', ['uses' => 'CustomerController@getCustomerApi'])->name('get-customer-api');
             Route::get('/domains', ['uses' => 'DomainController@getDomainAccountsApi'])->name('get-domains-api');
             Route::get('/domains/{domain_account_uid}/', ['uses' => 'DomainController@getDomainsApi'])->name('get-domain-api');
             Route::post('/domains/{domain_account_uid}/edit', ['uses' => 'DomainController@editDomainAccountApi'])->name('edit-domain-account-api');

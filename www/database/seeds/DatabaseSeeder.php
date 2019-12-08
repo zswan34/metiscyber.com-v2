@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ColorClassSeeder::class);
         $this->call(UserTypeSeeder::class);
         $this->call(UserAuthTypeSeeder::class);
+        $this->call(LeadStatusSeeder::class);
+        $this->call(LifeCycleSeeder::class);
     }
 }

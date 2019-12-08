@@ -16,6 +16,7 @@ class CreateUserTypesTable extends Migration
         Schema::create('user_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
+            $table->enum('category', ['customer', 'employee', 'other'])->default('employee');
             $table->timestamps();
         });
 

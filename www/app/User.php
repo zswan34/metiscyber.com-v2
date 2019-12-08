@@ -21,13 +21,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'uid', 'sid', 'name', 'email', 'recovery_email', 'phone', 'password',
-        'timezone_id', 'pkcs12', 'last_login', 'terms', 'api_token', 'locked',
+        'uid', 'sid', 'name', 'email', 'recovery_email', 'phone', 'password', 'phone_verified_at',
+        'timezone_id', 'pkcs12', 'last_login', 'terms', 'api_token', 'locked', 'customer_type_id',
         'phone_secondary', 'country', 'state', 'city', 'type', 'date_of_birth', 'ldap_user',
         'recovery_email', 'token_2fa', 'token_2fa_expiry', 'change_password',
-        'login_attempts', 'login_max_attempts', 'job_and_position_id', 'client', 'client_type_id',
+        'login_attempts', 'login_max_attempts', 'job_and_position_id', 'client',
         'disadvantaged', 'google2fa_secret', 'otp_secret', 'otp_exemption',
-        'user_status_id', 'avatar_file_id', 'employee', 'auth_type_id'
+        'user_status_id', 'avatar_file_id', 'employee', 'auth_type_id', 'life_cycle_id', 'lead_status_id'
     ];
 
     /**

@@ -57,7 +57,6 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Status</th>
-                    <th>Type</th>
                 </tr>
                 </thead>
             </table>
@@ -71,20 +70,20 @@
         assignedTo.select2({
             placeholder: 'Assigned to a user',
             allowClear: true
-        })
+        });
 
-        let userTable = $("#customer-table");
-        let table = userTable.DataTable({
+        let customerTable = $("#customer-table");
+        let table = customerTable.DataTable({
             serverSide: true,
             ajax: {
-                url: "/api/v1/users",
+                url: "/api/v1/customers",
                 type: 'GET'
             },
             columns: [
                 {name: 'sid', data: 'sid'},
                 {name: 'name', data: 'name',
                     render: (data, type, row) => {
-                        return `<a href="/accounts/${row.uid}">${data.toProperCase()}</a>`;
+                        return `<a href="${row.url}">${data.toProperCase()}</a>`;
                     }
                 },
                 {name: 'email', data: 'email'},
@@ -97,11 +96,6 @@
                     render: (data) => {
                         return (data === null) ? 'Email not verified' :
                             '<i class="lnr lnr-checkmark-circle text-success"></i> Verified';
-                    }
-                },
-                {name: 'user_type_name', data: 'user_type_name',
-                    render: (data) => {
-                        return (data !== null) ? data.toProperCase() : 'Not assigned';
                     }
                 }
             ]

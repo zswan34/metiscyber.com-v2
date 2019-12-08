@@ -212,6 +212,7 @@ class AuthController extends Controller
         $user->email_verified_at = now();
         $user->ldap_user = true;
         $user->disadvantaged = true;
+        $user->employee = true;
 
         if($user->save()) {
             $session = $user->session()->create();
