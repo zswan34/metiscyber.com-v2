@@ -1,46 +1,201 @@
-@extends("layouts.app-blank")
-@section("class", "bg-dark")
-@section("content")
-    <div class="authentication-wrapper authentication-1 px-4">
-        <div class="authentication-inner py-5">
+<!DOCTYPE html>
 
-            <!-- Logo -->
-            <div class="d-flex justify-content-center align-items-center">
-                <div class="ui-w-60">
-                    <div class="w-100 position-relative" style="padding-bottom: 54%">
-                        <svg class="w-100 h-100 position-absolute" viewBox="0 0 148 80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient id="a" x1="46.49" x2="62.46" y1="53.39" y2="48.2" gradientUnits="userSpaceOnUse"><stop stop-opacity=".25" offset="0"></stop><stop stop-opacity=".1" offset=".3"></stop><stop stop-opacity="0" offset=".9"></stop></linearGradient><linearGradient id="e" x1="76.9" x2="92.64" y1="26.38" y2="31.49" xlink:href="#a"></linearGradient><linearGradient id="d" x1="107.12" x2="122.74" y1="53.41" y2="48.33" xlink:href="#a"></linearGradient></defs><path class="fill-primary" transform="translate(-.1)" d="M121.36,0,104.42,45.08,88.71,3.28A5.09,5.09,0,0,0,83.93,0H64.27A5.09,5.09,0,0,0,59.5,3.28L43.79,45.08,26.85,0H.1L29.43,76.74A5.09,5.09,0,0,0,34.19,80H53.39a5.09,5.09,0,0,0,4.77-3.26L74.1,35l16,41.74A5.09,5.09,0,0,0,94.82,80h18.95a5.09,5.09,0,0,0,4.76-3.24L148.1,0Z"></path><path transform="translate(-.1)" d="M52.19,22.73l-8.4,22.35L56.51,78.94a5,5,0,0,0,1.64-2.19l7.34-19.2Z" fill="url(#a)"></path><path transform="translate(-.1)" d="M95.73,22l-7-18.69a5,5,0,0,0-1.64-2.21L74.1,35l8.33,21.79Z" fill="url(#e)"></path><path transform="translate(-.1)" d="M112.73,23l-8.31,22.12,12.66,33.7a5,5,0,0,0,1.45-2l7.3-18.93Z" fill="url(#d)"></path></svg>
-                    </div>
+<html lang="en" class="material-style">
+
+<head>
+    <title>{{ config('app.name') }}</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <link rel="shortcut icon" href="{{ asset('assets/logos/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/logos/favicon.ico') }}" type="image/x-icon">
+    <link rel="manifest" href="{{ asset('assets/ico/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('assets/ico/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#292929">
+    <meta name="theme-color" content="#292929">
+    <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
+
+    <!-- Icon fonts -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/ionicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/linearicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/open-iconic.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/pe-icon-7-stroke.css') }}">
+
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/bootstrap-material.css') }}" class="theme-settings-bootstrap-css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/appwork-material.css') }}" class="theme-settings-appwork-css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-corporate-material.css') }}" class="theme-settings-theme-css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/colors-material.css') }}" class="theme-settings-colors-css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/uikit.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
+
+    <!-- Load polyfills -->
+    <script src="{{ asset('assets/vendor/js/polyfills.js') }}"></script>
+    <script>document['documentMode']===10&&document.write('<script src="https://polyfill.io/v3/polyfill.min.js?features=Intl.~locale.en"><\/script>')</script>
+
+    <script src="{{ asset('assets/vendor/js/material-ripple.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/layout-helpers.js') }}"></script>
+
+    <!-- Theme settings -->
+    <!-- This file MUST be included after core stylesheets and layout-helpers.js in the <head> section -->
+    <script src="{{ asset('assets/vendor/js/theme-settings.js') }}"></script>
+    <script>
+        /* window.themeSettings = new ThemeSettings({
+             cssPath: 'assets/vendor/css/rtl/',
+             themesPath: 'assets/vendor/css/rtl/'
+         }); */
+    </script>
+
+    <!-- Core scripts -->
+    <script src="{{ asset('assets/vendor/js/pace.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Libs -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}">
+    <!-- Page -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/authentication.css') }}">
+</head>
+
+<body>
+<div class="page-loader">
+    <div class="bg-primary"></div>
+</div>
+
+<!-- Content -->
+
+<div class="authentication-wrapper authentication-1 px-4">
+    <div class="authentication-inner py-5">
+
+        <!-- Logo -->
+        <div class="d-flex justify-content-center align-items-center">
+            <div style="width: 60%;">
+                <img class="w-100" src="{{ asset('assets/logos/mc-nb-logo.png') }}" alt="">
+            </div>
+            <div id="sign-in-error" class="mt-2 bg-danger p-2 rounded-lg shadow-lg" style="display: none;">
+                <div class="text-white"><i class="ion ion-md-information-circle"></i>
+                    <span id="sign-in-error-text" class="test-white"></span>
                 </div>
             </div>
-            <!-- / Logo -->
-
-            <!-- Form -->
-            <form class="my-5">
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="text" class="form-control" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAAXNSR0IArs4c6QAAAbNJREFUWAntV8FqwkAQnaymUkpChB7tKSfxWCie/Yb+gbdeCqGf0YsQ+hU95QNyDoWCF/HkqdeiIaEUqyZ1ArvodrOHxanQOiCzO28y781skKwFW3scPV1/febP69XqarNeNTB2KGs07U3Ttt/Ozp3bh/u7V7muheQf6ftLUWyYDB5yz1ijuPAub2QRDDunJsdGkAO55KYYjl0OUu1VXOzQZ64Tr+IiPXedGI79bQHdbheCIAD0dUY6gV6vB67rAvo6IxVgWVbFy71KBKkAFaEc2xPQarXA931ot9tyHphiPwpJgSbfe54Hw+EQHMfZ/msVEEURjMfjCjbFeG2dFxPo9/sVOSYzxmAwGIjnTDFRQLMQAjQ5pJAQkCQJ5HlekeERxHEsiE0xUUCzEO9AmqYQhiF0Oh2Yz+ewWCzEY6aYKKBZCAGYs1wuYTabKdNNMWWxnaA4gp3Yry5JBZRlWTXDvaozUgGTyQSyLAP0dbb3DtQlmcan0yngT2ekE9ARc+z4AvC7nauh9iouhpcGamJeX8XF8MaClwaeROWRA7nk+tUnyzGvZrKg0/40gdME/t8EvgG0/NOS6v9NHQAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-                <div class="form-group">
-                    <label class="form-label d-flex justify-content-between align-items-end">
-                        <div>Password</div>
-                        <a href="javascript:void(0)" class="d-block small">Forgot password?</a>
-                    </label>
-                    <input type="password" class="form-control" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAAXNSR0IArs4c6QAAAbNJREFUWAntV8FqwkAQnaymUkpChB7tKSfxWCie/Yb+gbdeCqGf0YsQ+hU95QNyDoWCF/HkqdeiIaEUqyZ1ArvodrOHxanQOiCzO28y781skKwFW3scPV1/febP69XqarNeNTB2KGs07U3Ttt/Ozp3bh/u7V7muheQf6ftLUWyYDB5yz1ijuPAub2QRDDunJsdGkAO55KYYjl0OUu1VXOzQZ64Tr+IiPXedGI79bQHdbheCIAD0dUY6gV6vB67rAvo6IxVgWVbFy71KBKkAFaEc2xPQarXA931ot9tyHphiPwpJgSbfe54Hw+EQHMfZ/msVEEURjMfjCjbFeG2dFxPo9/sVOSYzxmAwGIjnTDFRQLMQAjQ5pJAQkCQJ5HlekeERxHEsiE0xUUCzEO9AmqYQhiF0Oh2Yz+ewWCzEY6aYKKBZCAGYs1wuYTabKdNNMWWxnaA4gp3Yry5JBZRlWTXDvaozUgGTyQSyLAP0dbb3DtQlmcan0yngT2ekE9ARc+z4AvC7nauh9iouhpcGamJeX8XF8MaClwaeROWRA7nk+tUnyzGvZrKg0/40gdME/t8EvgG0/NOS6v9NHQAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-                </div>
-                <div class="d-flex justify-content-between align-items-center m-0">
-                    <label class="custom-control custom-checkbox m-0">
-                        <input type="checkbox" class="custom-control-input">
-                        <span class="custom-control-label">Remember me</span>
-                    </label>
-                    <button type="button" class="btn btn-primary">Sign In</button>
-                </div>
-            </form>
-            <!-- / Form -->
-
-            <div class="text-center text-muted">
-                Don't have an account yet? <a href="javascript:void(0)">Sign Up</a>
-            </div>
-
         </div>
+        <!-- / Logo -->
+
+        <!-- Form -->
+        <form id="sign-in-form" class="my-5" action="{{ route('post-sign-in') }}" method="post" autocomplete="off">
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input name="email" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="form-label d-flex justify-content-between align-items-end">
+                    <div>Password</div>
+                    <a href="{{ route('get-forgot-password') }}" class="d-block small">Forgot password?</a>
+                </label>
+                <input name="password" type="password" class="form-control">
+            </div>
+            <div class="d-flex justify-content-between align-items-center m-0">
+                <label class="custom-control custom-checkbox m-0">
+                    <input type="checkbox" class="custom-control-input" name="remember">
+                    <span class="custom-control-label">Remember me</span>
+                </label>
+                <button type="button" class="btn btn-primary">Sign In</button>
+            </div>
+        </form>
+        <!-- / Form -->
+
+        <div class="text-center text-muted">
+            Don't have an account yet? <a href="{{ route('get-create-account') }}">Sign Up</a>
+        </div>
+
     </div>
-@endsection
+</div>
+<!-- / Content -->
+
+<!-- Core scripts -->
+<script src="{{ asset('assets/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/jquery-validation/dist/additional-methods.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+<script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
+<script src="{{ asset('assets/vendor/js/sidenav.js') }}"></script>
+
+<!-- Libs -->
+<script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+<!-- Demo -->
+<script src="{{ asset('assets/js/demo.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script>
+    let signInForm = $("#sign-in-form");
+    let signInError = $("#sign-in-error");
+    let signInErrorText = $("#sign-in-error-text");
+
+    signInForm.validate({
+        focusInvalid: false,
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            password: 'required'
+        },
+        messages: {
+            email: {
+                email: 'Must enter valid email address',
+                required: 'An email address is required'
+            },
+            password: 'Password is required'
+        },
+        errorPlacement: function errorPlacement(error, element) {
+            let $parent = $(element).parents('.form-group');
+
+            // Do not duplicate errors
+            if ($parent.find('.jquery-validation-error').length) { return; }
+
+            $parent.append(
+                error.addClass('jquery-validation-error small form-text invalid-feedback')
+            );
+        },
+        highlight: function(element) {
+            let $el = $(element);
+            let $parent = $el.parents('.form-group');
+
+            $el.addClass('is-invalid');
+
+            // Select2 and Tagsinput
+            if ($el.hasClass('select2-hidden-accessible') || $el.attr('data-role') === 'tagsinput') {
+                $el.parent().addClass('is-invalid');
+            }
+        },
+        unhighlight: function(element) {
+            $(element).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
+        },
+        submitHandler: (form) => {
+            let data = $(form).serialize();
+            signInError.hide();
+            axios.post($(form).attr('action'), data)
+                .then((res) => {
+                    const data = res.data;
+                    if (data.success) {
+                        window.location.href = data.redirect;
+                    } else {
+                        signInError.show();
+                        signInErrorText.text(data.message)
+                    }
+                }).catch((err) => {
+                if (err.request.status === 500) {
+                    signInError.show();
+                    signInErrorText.text('An unexpected error occurred. Try refreshing the page.');
+                }
+            });
+        }
+    })
+</script>
+</body>
+
+</html>

@@ -6,7 +6,7 @@
         <div>Accounts</div>
         <button type="button" class="btn d-block btn-primary rounded-pill waves-effect"
             data-toggle="modal" data-target="#create-user-account">
-            <span class="ion ion-md-add"></span>&nbsp; Add user</button>
+            <span class="ion ion-md-add"></span>&nbsp; Add Account</button>
     </h4>
     <!-- Filters -->
     <div class="ui-bordered px-4 pt-4 mb-4">

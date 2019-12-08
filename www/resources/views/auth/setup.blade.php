@@ -6,16 +6,11 @@
             <div class="card col-6 col-offset-3 mt-4 mb-3">
                 <div class="card-body">
                     <div class="mb-3 text-center">
-                        <img class="w-75" src="{{ asset('assets/logos/mc-nb-logo.png') }}" alt="">
+                        <img style="width: 35%;" src="{{ asset('assets/logos/mc-nb-logo.png') }}" alt="">
                     </div>
                     <h4 class="card-title">Hi {{ auth()->user()->fname() }}!</h4>
                     <form class="my-3" action="{{ route('post-setup') }}" id="setup-form" method="post" autocomplete="off">
                         @csrf
-                        <div class="form-group">
-                            <label for="secondary-email" class="form-label">Secondary Email</label>
-                            <input type="email" class="form-control" name="secondary-email" id="secondary-email" placeholder="Secondary Email">
-                            <small class="form-text text-muted">This is your recovery email</small>
-                        </div>
                         <div class="form-group">
                             <label class="form-label" for="timezone">Timezone</label>
                             <select id="timezone" type="text" class="form-control select2" name="timezone">
@@ -31,7 +26,22 @@
                                 @endforeach
                             </select>
                         </div>
-                        <p><b>TODO: </b>create input to invite a user(s) via email to see account budget</p>
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label class="form-label" for="user-country">Country</label>
+                                <select class="form-control select2" name="country" id="user-country"></select>
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label class="form-label" for="user-state">State</label>
+                                <select class="form-control select2" name="state" id="user-state" disabled></select>
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label class="form-label" for="user-city">City</label>
+                                <select class="form-control select2" name="city" id="user-city" disabled></select>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary">Finish</button>
                     </form>
                 </div>
@@ -43,6 +53,78 @@
 @section("scripts")
     <script>
     let setupForm = $("#setup-form");
+    let country = $("#user-country");
+    let state = $("#user-state");
+    let city = $("#user-city");
+
+    let countries = [];
+    let states = [];
+    let cities = [];
+
+    $.get('https://apis.metisnet.io/geodb/countries')
+        .then((res) => {
+            for(let i = 0; i < res.data.length; i++) {
+                let obj = {
+                    id: res.data[i].iso2,
+                    text: res.data[i].name
+                };
+                countries.push(obj);
+            }
+            country.select2({
+                data: countries
+            })
+        });
+
+    country.change((e) => {
+        state.empty();
+        states = [];
+        state.prop('disabled', false);
+
+        city.empty();
+        cities = [];
+        city.prop('disabled', true);
+
+        let iso2 = $(e.target).val();
+
+        $.get('https://apis.metisnet.io/geodb/countries/' + iso2 + '/states')
+            .then((res) => {
+                console.log(res);
+                for(let i = 0; i < res.data.length; i++) {
+                    let obj = {
+                        id: res.data[i].iso2,
+                        text: res.data[i].name
+                    };
+                    states.push(obj);
+                }
+                state.select2({
+                    data: states
+                })
+            });
+
+    });
+
+    state.change((e) => {
+        city.empty();
+        cities = [];
+        city.prop('disabled', false);
+        let countryIso2 = country.val();
+        let iso2 = $(e.target).val();
+
+        $.get('https://apis.metisnet.io/geodb/countries/' + countryIso2 + '/states/' + iso2 + '/cities')
+            .then((res) => {
+                console.log(res);
+                for(let i = 0; i < res.data.length; i++) {
+                    let obj = {
+                        id: res.data[i].name,
+                        text: res.data[i].name
+                    };
+                    cities.push(obj);
+                }
+                city.select2({
+                    data: cities
+                })
+            });
+    });
     setupForm.validate({
         rules: {
             timezone: 'required',

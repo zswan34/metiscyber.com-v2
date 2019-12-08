@@ -76,12 +76,12 @@
         <!-- Side container -->
         <!-- Do not display the container on extra small, small and medium screens -->
         <div class="d-none d-lg-flex col-lg-8 align-items-center ui-bg-cover ui-bg-overlay-container p-5"
-             style="background-image: url({{ asset('assets/img/backgrounds/thomas-kvistholt-191153-unsplash.jpg') }});">
+             style="background-image: url({{ asset('assets/img/bg/21.jpg') }});">
             <div class="ui-bg-overlay bg-dark opacity-50"></div>
 
             <!-- Text -->
             <div class="w-100 text-white px-5">
-                <h1 class="display-2 font-weight-bolder mb-4">METIS<br>NETWORK</h1>
+                <h1 class="display-2 font-weight-bolder mb-4">METIS CYBER</h1>
                 <div id="auth-quote" class="text-large font-weight-light">"Would you like me to give you a formula for success?
                     It's quite simple, really: Double your rate of failure. You are thinking of failure as the enemy of success.
                     But it isn't at all. You can be discouraged by failure or you can learn from it, so go ahead and make mistakes.

@@ -45,6 +45,8 @@ class CreateUsersTable extends Migration
             $table->string('type')->nullable();
             $table->unsignedBigInteger('user_type_id')->nullable();
             $table->boolean('employee')->default(0);
+            $table->boolean('client')->default(0);
+            $table->unsignedBigInteger('client_type_id')->nullable();
             $table->timestamp('date_of_birth')->nullable();
             $table->unsignedBigInteger('created_by_id')->nullable();
             $table->unsignedBigInteger('timezone_id')->nullable();

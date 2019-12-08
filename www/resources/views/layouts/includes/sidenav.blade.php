@@ -26,6 +26,12 @@
             </a>
         </li>
 
+        <li class="sidenav-header small font-weight-semibold">CRM</li>
+        <li class="sidenav-item {{ Request::is(['customers', 'customers/*']) ? ' active' : '' }}">
+            <a href="{{ route('get-customers') }}" class="sidenav-link"><i class="sidenav-icon lnr lnr-users"></i>
+                <div>Customers</div>
+            </a>
+        </li>
 
         <li class="sidenav-header small font-weight-semibold">METISNET</li>
 

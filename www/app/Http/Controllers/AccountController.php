@@ -35,11 +35,18 @@ class AccountController extends Controller
 
         $timezone = request('timezone');
         $recoverEmail = request('secondary-email');
+        $country = request('country');
+        $state = request('state');
+        $city = request('city');
+
         $tz = Timezone::findByValue($timezone);
 
         auth()->user()->update([
             'timezone_id' => $tz->id,
-            'recovery_email' => $recoverEmail
+            'recovery_email' => $recoverEmail,
+            'country' => $country,
+            'state' => $state,
+            'city' => $city
         ]);
 
         auth()->user()->save();
