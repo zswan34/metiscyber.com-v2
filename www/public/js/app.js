@@ -53945,7 +53945,7 @@ exports.default = function (nodeList) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.11.0
+/** @license React v16.12.0
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -53967,7 +53967,7 @@ var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "./nod
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.11.0';
+var ReactVersion = '16.12.0';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -56121,12 +56121,8 @@ function createScope() {
   return scopeComponent;
 }
 
-// Helps identify side effects in begin-phase lifecycle hooks and setState reducers:
-
- // In some cases, StrictMode should also double-render lifecycles.
-// This can be confusing for tests though,
-// And it can be bad for performance in production.
-// This feature flag can be used to control the behavior:
+// Helps identify side effects in render-phase lifecycle hooks and setState
+// reducers by double invoking them in Strict Mode.
 
  // To preserve the "Pause on caught exceptions" behavior of the debugger, we
 // replay the begin phase of a failed component inside invokeGuardedCallback.
@@ -56162,7 +56158,7 @@ var enableFundamentalAPI = false; // Experimental Scope support.
 var enableScopeAPI = false; // New API for JSX transforms to target - https://github.com/reactjs/rfcs/pull/107
 
 var enableJSXTransformAPI = false; // We will enforce mocking scheduler with scheduler/unstable_mock at some point. (v17?)
-// Till then, we warn about the missing mock, but still fallback to a sync mode compatible version
+// Till then, we warn about the missing mock, but still fallback to a legacy mode compatible version
 
  // For tests, we flush suspense fallbacks in an act scope;
 // *except* in some of our own tests, where we test incremental loading states.
@@ -56176,6 +56172,12 @@ var enableJSXTransformAPI = false; // We will enforce mocking scheduler with sch
  // Part of the simplification of React.createElement so we can eventually move
 // from React.createElement to React.jsx
 // https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md
+
+
+
+
+
+ // Flag to turn event.target and event.currentTarget in ReactNative from a reactTag to a component instance
 
 var React = {
   Children: {
@@ -58416,6 +58418,8 @@ __webpack_require__(/*! ./components/account_components/AccountMain */ "./resour
 
 __webpack_require__(/*! ./components/account_components/AccountUserMain */ "./resources/js/components/account_components/AccountUserMain.js");
 
+__webpack_require__(/*! ./components/customer_components/CustomerUserMain */ "./resources/js/components/customer_components/CustomerUserMain.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -59834,6 +59838,555 @@ function (_Component) {
 
 if (document.getElementById('user-account-wrapper')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AccountUserMain, null), document.getElementById('user-account-wrapper'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/customer_components/CustomerUserActivity.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/customer_components/CustomerUserActivity.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CustomerUserActivity; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.js");
+/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_tooltip__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _loading_EclipseElementLoadingComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../loading/EclipseElementLoadingComponent */ "./resources/js/components/loading/EclipseElementLoadingComponent.js");
+/* harmony import */ var _errors_ErrorComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../errors/ErrorComponent */ "./resources/js/components/errors/ErrorComponent.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var USER_API_URL = '/api/v1/users/';
+
+var CustomerUserActivity =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CustomerUserActivity, _Component);
+
+  function CustomerUserActivity(props) {
+    var _this;
+
+    _classCallCheck(this, CustomerUserActivity);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CustomerUserActivity).call(this, props));
+    _this.state = {
+      errors: null,
+      activities: [],
+      isLoaded: false,
+      hasError: false,
+      user: _this.props.user,
+      authUser: _this.props.authUser
+    };
+    return _this;
+  }
+
+  _createClass(CustomerUserActivity, [{
+    key: "fetchActivities",
+    value: function fetchActivities() {
+      var _this2 = this;
+
+      fetch(USER_API_URL + this.props.user.uid + '/activity?limit=10').then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this2.setState({
+          activities: result,
+          isLoaded: true
+        });
+      })["catch"](function (error) {
+        return _this2.setState({
+          errors: error,
+          isLoaded: false,
+          hasError: true
+        });
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchActivities();
+    }
+  }, {
+    key: "updateActivities",
+    value: function updateActivities() {
+      this.setState({
+        isLoaded: false
+      });
+      this.fetchActivities();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.hasError) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "text-danger"
+        }, "Error fetching data"));
+      }
+
+      if (this.state.isLoaded) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            position: 'relative'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1___default.a, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "text-primary",
+          onClick: this.updateActivities.bind(this),
+          "data-tip": "Refresh",
+          style: {
+            cursor: 'pointer',
+            position: 'absolute',
+            top: '-40px',
+            right: '0px'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "ion ion-md-refresh"
+        })), this.state.activities.map(function (activity, index) {
+          var timeAgo = moment(activity.created_at);
+
+          if (timeAgo.diff(moment(), 'days') > 2) {
+            timeAgo = moment.tz(activity.created_at, activity.timezone).format('dddd, MMMM Do YYYY');
+          } else {
+            timeAgo = moment.tz(activity.created_at, activity.timezone).fromNow();
+          }
+
+          var bg = '';
+          var icon = 'ion ion-ios-list-box';
+          var html = '';
+
+          if (activity.log_name === 'auth') {
+            bg = 'bg-success';
+            icon = 'ion ion-md-unlock';
+            html = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+              className: "text-body"
+            }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Client IP: ", activity.properties.session.ip_address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Browser: ", activity.properties.session.browser), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "OS: ", activity.properties.session.platform));
+          }
+
+          if (activity.log_name === 'auth-failed') {
+            bg = 'bg-danger';
+            icon = 'ion ion-md-lock';
+            html = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+              className: "text-body"
+            }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Client IP: ", activity.properties.session.ip_address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Browser: ", activity.properties.session.browser), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "OS: ", activity.properties.session.platform));
+          }
+
+          if (activity.log_name === 'user-created') {
+            bg = 'bg-info';
+            icon = 'ion ion-md-person-add';
+          }
+
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "media pb-1 mb-3",
+            key: index
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "account-activity-category " + bg
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: icon
+          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "media-body ml-3"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "mb-1"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+            className: "font-weight-semibold"
+          }, activity.description), " \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+            className: "text-muted"
+          }, timeAgo)), html));
+        }));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loading_EclipseElementLoadingComponent__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+      }
+    }
+  }]);
+
+  return CustomerUserActivity;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/customer_components/CustomerUserMain.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/customer_components/CustomerUserMain.js ***!
+  \*************************************************************************/
+/*! exports provided: CustomerUserMain */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerUserMain", function() { return CustomerUserMain; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.js");
+/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_tooltip__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_editext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-editext */ "./node_modules/react-editext/dist/index.es.js");
+/* harmony import */ var _CustomerUserActivity__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CustomerUserActivity */ "./resources/js/components/customer_components/CustomerUserActivity.js");
+/* harmony import */ var _loading_EclipseLoadingComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../loading/EclipseLoadingComponent */ "./resources/js/components/loading/EclipseLoadingComponent.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var uid = window.location.pathname.split('/')[2];
+var AUTH_USER_URL = '/api/v1/auth/';
+var UPDATE_USER_API = '/api/v1/users/';
+var USER_API_URL = '/api/v1/customers/';
+var CustomerUserMain =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CustomerUserMain, _Component);
+
+  function CustomerUserMain(props) {
+    var _this;
+
+    _classCallCheck(this, CustomerUserMain);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CustomerUserMain).call(this, props));
+    _this.state = {
+      isLoaded: false,
+      hasErrors: false,
+      authUser: [],
+      permissions: [],
+      user: []
+    };
+    return _this;
+  }
+
+  _createClass(CustomerUserMain, [{
+    key: "fetchAuthUser",
+    value: function fetchAuthUser() {
+      var _this2 = this;
+
+      fetch(AUTH_USER_URL).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this2.setState({
+          authUser: result.auth,
+          permissions: result.auth.permissions
+        });
+      })["catch"](function (error) {
+        return error;
+      });
+    }
+  }, {
+    key: "fetchUser",
+    value: function fetchUser(uid) {
+      var _this3 = this;
+
+      fetch(USER_API_URL + uid).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this3.setState({
+          user: result.data[0],
+          isLoaded: true
+        });
+      })["catch"](function (error) {
+        return error;
+      });
+    }
+  }, {
+    key: "userHasPermission",
+    value: function userHasPermission(permission) {
+      var match = false;
+
+      for (var i = 0; i < this.state.permissions.length; i++) {
+        if (this.state.permissions[i].name === permission) {
+          match = true;
+        }
+      }
+
+      return match;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchAuthUser();
+      this.fetchUser(uid);
+      $('[data-toggle="tooltip"]').tooltip();
+    }
+  }, {
+    key: "updateUser",
+    value: function updateUser(data) {
+      var _this4 = this;
+
+      axios.post(UPDATE_USER_API + this.state.user.uid, data).then(function (res) {
+        if (res.data.success) {
+          _this4.fetchUser(uid);
+        }
+      });
+    }
+  }, {
+    key: "onSaveInput",
+    value: function onSaveInput(event, field) {
+      var data = {
+        field: event,
+        value: field
+      };
+      this.updateUser(data);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (!this.state.isLoaded) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loading_EclipseLoadingComponent__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+      } else {
+        var user = this.state.user;
+        var userType = user.user_type_name !== null ? user.user_type_name.toProperCase() : null;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_2___default.a, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card col-md-4 col-sm-12 account-right"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "/accounts"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "lnr lnr-arrow-left"
+        }), " \xA0 Customers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "media mt-2"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "m-auto text-center",
+          src: user.avatar_url,
+          alt: "",
+          style: {
+            height: '80px',
+            borderRadius: '100%'
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "media-body pt-2 ml-3 text-center"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "mb-1"
+        }, user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-muted small"
+        }, user.customer ? 'Customer' : 'Non-customer | ' + userType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "mt-1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "btn icon-btn btn-primary btn-sm md-btn-flat border border-primary user-action-btn",
+          "data-tip": "Send mesage"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "ion ion-md-mail"
+        })), user.locked ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "btn icon-btn btn-primary btn-sm md-btn-flat border border-primary user-action-btn",
+          "data-tip": "Unlock account"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "ion ion-md-lock"
+        })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "btn icon-btn btn-primary btn-sm md-btn-flat border border-primary user-action-btn",
+          "data-tip": "Lock account"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "ion ion-md-unlock"
+        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+          className: "border-light m-0"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body",
+          style: {
+            maxHeight: '400px',
+            overflow: 'auto'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          className: "mb-4"
+        }, "Recent Activity", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+          className: 'ml-2'
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "/accounts/" + user.uid + '/activity'
+        }, "See more"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CustomerUserActivity__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          authUser: this.state.authUser,
+          user: this.state.user
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card col-md-8 col-sm-12 account-left p-0"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "card-header"
+        }, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          className: "mb-0 text-primary"
+        }, "General Information"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+          className: 'bg-primary'
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "SID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.sid)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "Name"), this.userHasPermission('edit users') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_editext__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          type: "text",
+          mainContainerClassName: "react-editext-main",
+          saveButtonContent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: 'lnr lnr-checkmark-circle text-success'
+          }),
+          cancelButtonContent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: 'lnr lnr-cross-circle text-danger'
+          }),
+          editButtonContent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: 'text-primary'
+          }, "edit"),
+          hideIcons: true,
+          onSave: this.onSaveInput.bind(this, 'name'),
+          value: user.name === null ? 'Not set' : user.name
+        }) : user.name === null ? 'Not set' : user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.email)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "Phone"), this.userHasPermission('edit users') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_editext__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          type: "tel",
+          mainContainerClassName: "react-editext-main",
+          saveButtonContent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: 'lnr lnr-checkmark-circle text-success'
+          }),
+          cancelButtonContent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: 'lnr lnr-cross-circle text-danger'
+          }),
+          editButtonContent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: 'text-primary'
+          }, "edit"),
+          hideIcons: true,
+          onSave: this.onSaveInput.bind(this, 'phone'),
+          value: user.phone === null ? 'Not set' : user.phone
+        }) : user.phone === null ? 'Not set' : user.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "Country"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, " ", user.country !== null ? user.country.toProperCase() : 'N/A')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "State"), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, " ", user.state !== null ? user.state.toProperCase() : 'N/A')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, " ", user.city !== null ? user.city.toProperCase() : 'N/A'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          className: "mb-0 text-primary"
+        }, "Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+          className: 'bg-primary'
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "Account Locked"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, " ", user.locked ? 'True' : 'False')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "Account Verified"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, " ", user.email_verified_at !== null ? 'True' : 'False')), user.ldap_user ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "mt-4 mb-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+          className: "mb-0 text-primary"
+        }, "LDAP"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+          className: 'bg-primary'
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "CN"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.meta.ldap.cn)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.meta.ldap.mail)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "GivenName:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.meta.ldap.givenname)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "SN:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.meta.ldap.sn)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "UID:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.meta.ldap.uid)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "form-label italics"
+        }, "DN:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.meta.ldap.dn))) : null)))));
+      }
+    }
+  }]);
+
+  return CustomerUserMain;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+if (document.getElementById('customer-account-wrapper')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomerUserMain, null), document.getElementById('customer-account-wrapper'));
 }
 
 /***/ }),
@@ -62935,8 +63488,8 @@ function is_null(arg) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/Zach/Documents/Web Sites/metisnet.io-v2/www/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/Zach/Documents/Web Sites/metisnet.io-v2/www/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/Zach/Documents/Web Sites/metiscyber.com-v2/www/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/Zach/Documents/Web Sites/metiscyber.com-v2/www/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

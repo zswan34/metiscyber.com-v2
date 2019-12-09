@@ -111,9 +111,7 @@
 <script src="{{ asset('assets/vendor/libs/chartjs/chartjs.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
 
-
 <!-- Demo -->
-<script src="{{ asset('assets/js/demo.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('scripts')
 </body>

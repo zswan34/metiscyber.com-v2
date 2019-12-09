@@ -5,7 +5,7 @@
         <div class="authentication-inner py-5">
             <div class="d-flex justify-content-center">
                 <!-- Form -->
-                <form class="card">
+                <form class="card card-sm">
                     <div class="p-4 p-sm-5">
 
                         <a class="text-blue" href="{{ route('get-sign-in') }}"><i class="lnr lnr-arrow-left"></i> Go Back</a>
@@ -27,13 +27,13 @@
                         <p>
                             Enter your email address and we will send you a link to reset your password.
                         </p>
+                        <form id="forgot-password-form" action="{{ route('post-forgot-password') }}" method="post">
+                            <div class="form-group">
+                                <input name="email" type="text" class="form-control" placeholder="Enter your email address">
+                            </div>
 
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter your email address">
-                        </div>
-
-                        <button type="button" class="btn btn-primary btn-block">Send password reset email</button>
-
+                            <button type="submit" class="btn btn-primary btn-block">Send password reset email</button>
+                        </form>
                     </div>
                 </form>
                 <!-- / Form -->
@@ -41,4 +41,21 @@
         </div>
     </div>
 
+@endsection
+@section("scripts")
+    <script>
+        let forgotPasswordForm = $("#forgot-password-form");
+
+        forgotPasswordForm.validate({
+            rules: {
+                email: {
+                    email: true,
+                    required: true
+                }
+            },
+            submitHandler: (form) => {
+                console.log(form);
+            }
+        })
+    </script>
 @endsection

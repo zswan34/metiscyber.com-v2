@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('phone_secondary')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('phone_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->boolean('ldap_user')->default(0);
             $table->boolean('disadvantaged')->default(0);
             $table->string('otp_secret')->nullable();
@@ -50,6 +50,8 @@ class CreateUsersTable extends Migration
             $table->boolean('customer')->default(0);
             $table->timestamp('date_of_birth')->nullable();
             $table->unsignedBigInteger('created_by_id')->nullable();
+            $table->unsignedBigInteger('updated_by_id')->nullable();
+            $table->unsignedBigInteger('assigned_to_id')->nullable();
             $table->unsignedBigInteger('timezone_id')->nullable();
             $table->unsignedBigInteger('avatar_file_id')->nullable();
             $table->unsignedBigInteger('auth_type_id')->default(1);
@@ -62,6 +64,9 @@ class CreateUsersTable extends Migration
 
         Schema::table('users', function (Blueprint $table) {
             $table->foreign('created_by_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('assigned_to_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('lead_status_id')->references('id')->on('lead_statuses')->onDelete('cascade');
         });
     }
 

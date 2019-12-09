@@ -28,3 +28,5 @@ require('./components/security_components/RolesAndPermissions');
 
 require('./components/account_components/AccountMain');
 require("./components/account_components/AccountUserMain");
+
+require("./components/customer_components/CustomerUserMain");

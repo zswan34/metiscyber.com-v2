@@ -52,7 +52,6 @@
             <table id="customer-table" class="table table-striped table-bordered">
                 <thead>
                 <tr>
-                    <th>SID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -66,7 +65,10 @@
 @endsection
 @section('scripts')
     <script>
+        let createCustomerForm = $("#create-customer-form");
+        let createCustomerModal = $("#create-customer-modal");
         let assignedTo = $("#customer-assigned");
+
         assignedTo.select2({
             placeholder: 'Assigned to a user',
             allowClear: true
@@ -80,7 +82,6 @@
                 type: 'GET'
             },
             columns: [
-                {name: 'sid', data: 'sid'},
                 {name: 'name', data: 'name',
                     render: (data, type, row) => {
                         return `<a href="${row.url}">${data.toProperCase()}</a>`;
@@ -99,6 +100,31 @@
                     }
                 }
             ]
-        })
+        });
+
+        createCustomerModal.on('hidden.bs.modal', function () {
+            $(this).find("input,textarea,select").val('').end();
+
+        });
+
+        createCustomerForm.validate({
+            rules: {
+                'customer-name': 'required',
+                'customer-email': {
+                    email: true,
+                    required: true
+                }
+            },
+            submitHandler: (form) => {
+                let data = $(form).serialize();
+                axios.post($(form).attr('action'), data)
+                    .then((res) => {
+                        if (res.data.success) {
+                            $("#create-customer-modal").modal('hide');
+                            table.ajax.reload();
+                        }
+                    })
+            }
+        });
     </script>
 @endsection

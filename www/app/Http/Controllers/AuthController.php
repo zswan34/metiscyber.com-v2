@@ -252,6 +252,6 @@ class AuthController extends Controller
     }
 
     public function postForgotPassword() {
-
+        return request()->all();
     }
 }

@@ -55,12 +55,12 @@
                     <div class="row">
                         <div class="form-group col">
                             <label class="switcher my-1">
-                                <input type="checkbox" class="switcher-input" name="customer-verification-email">
+                                <input type="checkbox" class="switcher-input" name="customer-skip-email-verification">
                                 <span class="switcher-indicator">
                                         <span class="switcher-yes"></span>
                                         <span class="switcher-no"></span>
                                     </span>
-                                <span class="switcher-label">Send verification email</span>
+                                <span class="switcher-label">Skip Email Verification</span>
                             </label>
                             <label class="switcher my-1">
                                 <input type="checkbox" class="switcher-input" name="customer-change-password">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>

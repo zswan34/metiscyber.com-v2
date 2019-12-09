@@ -24,9 +24,9 @@ class User extends Authenticatable
         'uid', 'sid', 'name', 'email', 'recovery_email', 'phone', 'password', 'phone_verified_at',
         'timezone_id', 'pkcs12', 'last_login', 'terms', 'api_token', 'locked', 'customer_type_id',
         'phone_secondary', 'country', 'state', 'city', 'type', 'date_of_birth', 'ldap_user',
-        'recovery_email', 'token_2fa', 'token_2fa_expiry', 'change_password',
+        'recovery_email', 'token_2fa', 'token_2fa_expiry', 'change_password', 'updated_by_id',
         'login_attempts', 'login_max_attempts', 'job_and_position_id', 'client',
-        'disadvantaged', 'google2fa_secret', 'otp_secret', 'otp_exemption',
+        'disadvantaged', 'google2fa_secret', 'otp_secret', 'otp_exemption', 'assigned_to',
         'user_status_id', 'avatar_file_id', 'employee', 'auth_type_id', 'life_cycle_id', 'lead_status_id'
     ];
 
@@ -113,6 +113,12 @@ class User extends Authenticatable
                     list($alpha, $numeric) = sscanf($sid, "%[a-zA-Z]%d");
 
                     $sid = $alpha . ($numeric + 1);
+                }
+
+                while(User::where('sid', $sid)->exists()) {
+                    $newSid = preg_split("/(,?\s+)|((?<=[a-z])(?=\d))|((?<=\d)(?=[a-z]))/i", $sid);
+                    $num = $newSid[1] + 1;
+                    $sid = $newSid[0] . $num;
                 }
                 return strtolower($sid);
             }

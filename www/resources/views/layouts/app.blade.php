@@ -131,11 +131,14 @@
 <!-- / Layout wrapper -->
 
 <!-- Core scripts -->
+<script src="{{ asset('assets/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/jquery-validation/dist/additional-methods.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
 <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
 <script src="{{ asset('assets/vendor/js/sidenav.js') }}"></script>
 
 <!-- Libs -->
+
 <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/chartjs/chartjs.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/datatables/datatables.js') }}"></script>
