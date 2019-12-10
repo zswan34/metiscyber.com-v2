@@ -1,4 +1,5 @@
 require('./utils/helpers');
+require('./libs/Permissions');
 require('url-parse');
 /**
  * First we will load all of this project's JavaScript dependencies which

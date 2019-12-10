@@ -128,7 +128,7 @@ export class CustomerUserMain extends Component {
                             <h5>About this customer</h5>
                             <div className="form-group">
                                 <label htmlFor="customer-name" className="form-label">Name</label>
-                                {(this.userHasPermission('edit users')) ?
+                                {(Permissions.hasAny(this.state.permissions, ['edit users', 'edit customers'])) ?
                                     <EditText
                                         type='text'
                                         mainContainerClassName={"react-editext-main"}
@@ -139,11 +139,12 @@ export class CustomerUserMain extends Component {
                                         onSave={this.onSaveInput.bind(this, 'name')}
                                         value={(user.name === null) ? 'Not set' : user.name}
                                     />
-                                    :  (user.name === null) ? 'Not set' : user.name}
+                                    :  (user.name === null) ? <span className={"d-block"}>Not set</span> :
+                                        <span className={"d-block"}>{user.name}</span> }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="customer-email" className="form-label">Email</label>
-                                {(this.userHasPermission('edit customer')) ?
+                                {(Permissions.hasAny(this.state.permissions, ['edit users', 'edit customers'])) ?
                                     <EditText
                                         type='text'
                                         mainContainerClassName={"react-editext-main"}
@@ -154,12 +155,13 @@ export class CustomerUserMain extends Component {
                                         onSave={this.onSaveInput.bind(this, 'email')}
                                         value={(user.email === null) ? 'Not set' : user.email}
                                     />
-                                    :  (user.email === null) ? 'Not set' : user.email}
+                                    :  (user.email === null) ? <span className={"d-block"}>Not set</span> :
+                                        <span className={"d-block"}>{user.email}</span> }
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="customer-phone" className="form-label">Phone</label>
-                                {(this.userHasPermission('edit customer')) ?
+                                {(Permissions.hasAny(this.state.permissions, ['edit users', 'edit customers'])) ?
                                     <EditText
                                         type='text'
                                         mainContainerClassName={"react-editext-main"}
@@ -170,7 +172,8 @@ export class CustomerUserMain extends Component {
                                         onSave={this.onSaveInput.bind(this, 'phone')}
                                         value={(user.phone === null) ? 'Not set' : user.phone}
                                     />
-                                    :  (user.phone === null) ? 'Not set' : user.phone}
+                                    :  (user.phone === null) ? <span className={"d-block"}>Not set</span> :
+                                        <span className={"d-block"}>{user.phone}</span> }
                             </div>
 
                             <div className="form-group">

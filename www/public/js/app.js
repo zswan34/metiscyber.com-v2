@@ -58376,6 +58376,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./utils/helpers */ "./resources/js/utils/helpers.js");
 
+__webpack_require__(/*! ./libs/Permissions */ "./resources/js/libs/Permissions.js");
+
 __webpack_require__(/*! url-parse */ "./node_modules/url-parse/index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -60231,7 +60233,7 @@ function (_Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "customer-name",
           className: "form-label"
-        }, "Name"), this.userHasPermission('edit users') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_editext__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }, "Name"), Permissions.hasAny(this.state.permissions, ['edit users', 'edit customers']) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_editext__WEBPACK_IMPORTED_MODULE_3__["default"], {
           type: "text",
           mainContainerClassName: "react-editext-main",
           saveButtonContent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -60246,12 +60248,16 @@ function (_Component) {
           hideIcons: true,
           onSave: this.onSaveInput.bind(this, 'name'),
           value: user.name === null ? 'Not set' : user.name
-        }) : user.name === null ? 'Not set' : user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }) : user.name === null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, "Not set") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "customer-email",
           className: "form-label"
-        }, "Email"), this.userHasPermission('edit customer') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_editext__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }, "Email"), Permissions.hasAny(this.state.permissions, ['edit users', 'edit customers']) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_editext__WEBPACK_IMPORTED_MODULE_3__["default"], {
           type: "text",
           mainContainerClassName: "react-editext-main",
           saveButtonContent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -60266,12 +60272,16 @@ function (_Component) {
           hideIcons: true,
           onSave: this.onSaveInput.bind(this, 'email'),
           value: user.email === null ? 'Not set' : user.email
-        }) : user.email === null ? 'Not set' : user.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }) : user.email === null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, "Not set") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.email)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "customer-phone",
           className: "form-label"
-        }, "Phone"), this.userHasPermission('edit customer') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_editext__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }, "Phone"), Permissions.hasAny(this.state.permissions, ['edit users', 'edit customers']) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_editext__WEBPACK_IMPORTED_MODULE_3__["default"], {
           type: "text",
           mainContainerClassName: "react-editext-main",
           saveButtonContent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -60286,7 +60296,11 @@ function (_Component) {
           hideIcons: true,
           onSave: this.onSaveInput.bind(this, 'phone'),
           value: user.phone === null ? 'Not set' : user.phone
-        }) : user.phone === null ? 'Not set' : user.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }) : user.phone === null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, "Not set") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.phone)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "customer-phone",
@@ -63387,6 +63401,39 @@ function (_Component) {
 if (document.getElementById('roles-and-permissions-wrapper')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RolesAndPermissions, null), document.getElementById('roles-and-permissions-wrapper'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/libs/Permissions.js":
+/*!******************************************!*\
+  !*** ./resources/js/libs/Permissions.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+Permissions = {
+  hasAny: function hasAny(list, required) {
+    if (Array.isArray(required)) {
+      for (var i = 0; i < required.length; i++) {
+        for (var j = 0; j < list.length; j++) {
+          if (list[j].name === required[i]) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    } else {
+      for (var _i = 0; _i < list.length; _i++) {
+        if (list[_i].name === required) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+  }
+};
 
 /***/ }),
 

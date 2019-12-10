@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80707e4c-9b67-4624-a0af-8105f4f65332" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/www/app/Observers/UserObserver.php" afterPath="$PROJECT_DIR$/www/app/Observers/UserObserver.php" />
-      <change beforePath="$PROJECT_DIR$/www/database/seeds/RolesAndPermissionsSeeder.php" afterPath="$PROJECT_DIR$/www/database/seeds/RolesAndPermissionsSeeder.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/www/resources/js/libs/Permissions.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/www/public/js/app.js" afterPath="$PROJECT_DIR$/www/public/js/app.js" />
+      <change beforePath="$PROJECT_DIR$/www/resources/js/app.js" afterPath="$PROJECT_DIR$/www/resources/js/app.js" />
+      <change beforePath="$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js" afterPath="$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js" />
+      <change beforePath="$PROJECT_DIR$/www/resources/js/prototypes.js" afterPath="$PROJECT_DIR$/www/resources/js/prototypes.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,27 +25,6 @@
               <caret line="77" column="30" lean-forward="false" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
               <folding>
                 <element signature="e#40#59#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create-customer.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/resources/views/pages/customers/modals/create-customer.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="57" column="116" lean-forward="false" selection-start-line="57" selection-start-column="116" selection-end-line="57" selection-end-column="116" />
-              <folding>
-                <marker date="1575872446179" expanded="true" signature="272:304" ph="..." />
-                <marker date="1575872446179" expanded="true" signature="2047:2097" ph="..." />
-                <marker date="1575872446179" expanded="true" signature="2152:2164" ph="..." />
-                <marker date="1575872446179" expanded="true" signature="2170:2183" ph="..." />
-                <marker date="1575872446179" expanded="true" signature="2705:2740" ph="..." />
-                <marker date="1575872446179" expanded="true" signature="2795:2814" ph="..." />
-                <marker date="1575872446179" expanded="true" signature="2820:2838" ph="..." />
-                <marker date="1575872446179" expanded="true" signature="3297:3334" ph="..." />
-                <marker date="1575872446179" expanded="true" signature="3389:3409" ph="..." />
-                <marker date="1575872446179" expanded="true" signature="3415:3434" ph="..." />
               </folding>
             </state>
           </provider>
@@ -82,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomerUserMain.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CustomerUserMain.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="145" column="71" lean-forward="false" selection-start-line="145" selection-start-column="63" selection-end-line="145" selection-end-column="71" />
+            <state relative-caret-position="125">
+              <caret line="163" column="107" lean-forward="false" selection-start-line="163" selection-start-column="107" selection-end-line="163" selection-end-column="107" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -94,21 +77,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RolesAndPermissionsSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/database/seeds/RolesAndPermissionsSeeder.php">
+      <file leaf-file-name="Permissions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/resources/js/libs/Permissions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="223" column="0" lean-forward="false" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
+            <state relative-caret-position="322">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserObserver.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/resources/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserObserver.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/app/Observers/UserObserver.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="290">
-              <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -119,28 +112,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="368">
               <caret line="163" column="92" lean-forward="false" selection-start-line="152" selection-start-column="40" selection-end-line="163" selection-end-column="92" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/app/Http/Controllers/UserController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="81" column="44" lean-forward="false" selection-start-line="58" selection-start-column="8" selection-end-line="81" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomerUserActivity.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserActivity.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -214,14 +185,16 @@
         <option value="$PROJECT_DIR$/www/resources/js/components/company_components/CompanyMain.js" />
         <option value="$PROJECT_DIR$/www/resources/js/components/company_components/CompanyUserActivity.js" />
         <option value="$PROJECT_DIR$/www/resources/js/components/company_components/CompanyUserMain.js" />
-        <option value="$PROJECT_DIR$/www/resources/js/app.js" />
         <option value="$PROJECT_DIR$/www/resources/views/pages/customers/customer.blade.php" />
         <option value="$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserActivity.js" />
         <option value="$PROJECT_DIR$/www/resources/views/pages/customers/customers.blade.php" />
         <option value="$PROJECT_DIR$/www/app/Http/Controllers/CustomerController.php" />
-        <option value="$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js" />
         <option value="$PROJECT_DIR$/www/database/seeds/RolesAndPermissionsSeeder.php" />
         <option value="$PROJECT_DIR$/www/app/Observers/UserObserver.php" />
+        <option value="$PROJECT_DIR$/www/resources/js/prototypes.js" />
+        <option value="$PROJECT_DIR$/www/resources/js/app.js" />
+        <option value="$PROJECT_DIR$/www/resources/js/libs/Permissions.js" />
+        <option value="$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js" />
       </list>
     </option>
   </component>
@@ -381,23 +354,6 @@
               <item name="metiscyber.com-v2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="metiscyber.com-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="metiscyber.com-v2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="account_components" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="metiscyber.com-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="metiscyber.com-v2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -488,12 +444,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1575692324727</updated>
-      <workItem from="1575692326087" duration="42651000" />
+      <workItem from="1575692326087" duration="45267000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42651000" />
+    <option name="totallyTimeSpent" value="45267000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -530,34 +486,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="88" column="22" lean-forward="false" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
-          <folding>
-            <marker date="1574820740183" expanded="true" signature="30:73" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="215:235" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="1720:1739" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="1848:1862" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="1936:1952" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="1996:2018" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="2059:2078" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="2297:2317" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="2410:2432" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="2479:2508" ph="..." />
-            <marker date="1574820740183" expanded="true" signature="2605:2625" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/resources/sass/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="29" lean-forward="false" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appworks/html-demo/pages_authentication_login-v1.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -1119,14 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="29" column="55" lean-forward="false" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/resources/views/pages/customers/customer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -1144,7 +1064,7 @@
         <state relative-caret-position="115">
           <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1209,30 +1129,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerMain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2214">
-          <caret line="149" column="47" lean-forward="false" selection-start-line="149" selection-start-column="42" selection-end-line="149" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/app/Http/Controllers/CustomerController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="77" column="30" lean-forward="false" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
           <folding>
             <element signature="e#40#59#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="145" column="71" lean-forward="false" selection-start-line="145" selection-start-column="63" selection-end-line="145" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1248,8 +1150,50 @@
     <entry file="file://$PROJECT_DIR$/www/app/Observers/UserObserver.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
-          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/resources/js/prototypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2214">
+          <caret line="149" column="47" lean-forward="false" selection-start-line="149" selection-start-column="42" selection-end-line="149" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/resources/js/libs/Permissions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="163" column="107" lean-forward="false" selection-start-line="163" selection-start-column="107" selection-end-line="163" selection-end-column="107" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

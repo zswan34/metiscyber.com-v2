@@ -9,3 +9,4 @@ String.prototype.replaceChar = function(search, replace) {
 String.prototype.isEmail = function () {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this);
 };
+
