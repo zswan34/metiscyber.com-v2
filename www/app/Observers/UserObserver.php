@@ -16,7 +16,10 @@ class UserObserver
         $domain = explode('@', $user->getAttribute('email'))[1];
 
         if ($domain === 'metiscyber.com') {
-            $user->assignRole('member');
+            $user->setAttribute('employee', true);
+            if (!count(User::all())) {
+                $user->assignRole('executive');
+            }
         }
 
         $geo = GeoLocate::fetchClient();

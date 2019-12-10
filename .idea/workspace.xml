@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80707e4c-9b67-4624-a0af-8105f4f65332" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/www/app/Http/Controllers/CustomerController.php" afterPath="$PROJECT_DIR$/www/app/Http/Controllers/CustomerController.php" />
+      <change beforePath="$PROJECT_DIR$/www/app/Observers/UserObserver.php" afterPath="$PROJECT_DIR$/www/app/Observers/UserObserver.php" />
       <change beforePath="$PROJECT_DIR$/www/database/seeds/RolesAndPermissionsSeeder.php" afterPath="$PROJECT_DIR$/www/database/seeds/RolesAndPermissionsSeeder.php" />
-      <change beforePath="$PROJECT_DIR$/www/public/js/app.js" afterPath="$PROJECT_DIR$/www/public/js/app.js" />
-      <change beforePath="$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js" afterPath="$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js" />
-      <change beforePath="$PROJECT_DIR$/www/resources/views/pages/customers/customers.blade.php" afterPath="$PROJECT_DIR$/www/resources/views/pages/customers/customers.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -98,11 +94,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RolesAndPermissionsSeeder.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RolesAndPermissionsSeeder.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/database/seeds/RolesAndPermissionsSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="23">
-              <caret line="223" column="8" lean-forward="false" selection-start-line="223" selection-start-column="8" selection-end-line="223" selection-end-column="8" />
+              <caret line="223" column="0" lean-forward="false" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserObserver.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/app/Observers/UserObserver.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -137,20 +143,6 @@
               <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customer.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/resources/views/pages/customers/customer.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="37" />
-              <folding>
-                <marker date="1575873604303" expanded="true" signature="9:22" ph="..." />
-                <marker date="1575873604303" expanded="true" signature="33:41" ph="..." />
-                <marker date="1575873604303" expanded="true" signature="33:42" ph="..." />
               </folding>
             </state>
           </provider>
@@ -229,6 +221,7 @@
         <option value="$PROJECT_DIR$/www/app/Http/Controllers/CustomerController.php" />
         <option value="$PROJECT_DIR$/www/resources/js/components/customer_components/CustomerUserMain.js" />
         <option value="$PROJECT_DIR$/www/database/seeds/RolesAndPermissionsSeeder.php" />
+        <option value="$PROJECT_DIR$/www/app/Observers/UserObserver.php" />
       </list>
     </option>
   </component>
@@ -368,34 +361,7 @@
               <item name="metiscyber.com-v2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Mail" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="metiscyber.com-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="metiscyber.com-v2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Observers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="metiscyber.com-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="metiscyber.com-v2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="metiscyber.com-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="metiscyber.com-v2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="migrations" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="metiscyber.com-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="metiscyber.com-v2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="seeds" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="metiscyber.com-v2" type="b2602c69:ProjectViewProjectNode" />
@@ -522,12 +488,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1575692324727</updated>
-      <workItem from="1575692326087" duration="42292000" />
+      <workItem from="1575692326087" duration="42651000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42292000" />
+    <option name="totallyTimeSpent" value="42651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -951,14 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/Observers/UserObserver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-286">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/.env.example">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1282,7 +1240,15 @@
     <entry file="file://$PROJECT_DIR$/www/database/seeds/RolesAndPermissionsSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
-          <caret line="223" column="8" lean-forward="false" selection-start-line="223" selection-start-column="8" selection-end-line="223" selection-end-column="8" />
+          <caret line="223" column="0" lean-forward="false" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/Observers/UserObserver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding />
         </state>
       </provider>

@@ -221,7 +221,7 @@ class RolesAndPermissionsSeeder extends Seeder
         {
             Permission::create(['name' => $app, 'category' => 'extras']);
         }*/
-        
+
         $executive = Role::create(['name' => 'executive']);
         $executive->givePermissionTo(Permission::all());
 
