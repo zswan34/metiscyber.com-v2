@@ -73,6 +73,9 @@ class CustomerController extends Controller
         $customers = User::where('customer', true)->get();
         foreach($customers as $customer) {
             $customer->timezone = $customer->getTimezone();
+            $customer->avatar_url = Avatar::render($customer->email);
+            $customer->assigned_to = User::where('id', $customer->assigned_to_id)
+                ->first(['uid', 'name', 'email']);
             $customer->url = route('get-customer', ['customer_uid' => $customer->uid]);
             unset($customer['timezone_id']);
         }
@@ -96,6 +99,8 @@ class CustomerController extends Controller
             $tmpUser = User::where('id', $user->id)->first();
             $roles = $tmpUser->getRoleNames();
             $user->avatar_url = Avatar::render($user->email);
+            $user->assigned_to = User::where('id', $user->assigned_to_id)
+                ->first(['uid', 'name', 'email']);
             if ($user->ldap_user) {
                 $ldapUser = $this->ldap->search()->where('mail', $user->email)->first();
                 $ldap = [
@@ -114,8 +119,6 @@ class CustomerController extends Controller
             ];
             $user->timezone = $tmpUser->getTimezone();
         }
-        return datatables($users)->toJson();
-
         return datatables($users)->toJson();
     }
 }

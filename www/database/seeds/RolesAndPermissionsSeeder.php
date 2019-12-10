@@ -116,7 +116,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'name' => 'create user',
                 'category' => 'users'
             ], [
-                'name' => 'remove user',
+                'name' => 'archive user',
                 'category' => 'users'
             ], [
                 'name' => 'appoint admins',
@@ -163,10 +163,19 @@ class RolesAndPermissionsSeeder extends Seeder
             ], [
                 'name' => 'edit users',
                 'category' => 'users'
+            ],  [
+                'name' => 'delete users',
+                'category' => 'users'
             ], [
                 'name' => 'edit accounts',
                 'category' => 'accounts'
             ], [
+                'name' => 'archive accounts',
+                'category' => 'accounts'
+            ], [
+                'name' => 'delete accounts',
+                'category' => 'accounts'
+            ],  [
                 'name' => 'receive certificates',
                 'category' => 'security'
             ], [
@@ -190,6 +199,18 @@ class RolesAndPermissionsSeeder extends Seeder
             ], [
                 'name' => 'revoke permissions',
                 'category' => 'roles and permissions'
+            ], [
+                'name' => 'create customers',
+                'category' => 'customers'
+            ], [
+                'name' => 'edit customers',
+                'category' => 'customers'
+            ], [
+                'name' => 'archive customers',
+                'category' => 'customers'
+            ], [
+                'name' => 'delete customers',
+                'category' => 'customers'
             ]
         ];
 
@@ -200,10 +221,13 @@ class RolesAndPermissionsSeeder extends Seeder
         {
             Permission::create(['name' => $app, 'category' => 'extras']);
         }*/
+        
+        $executive = Role::create(['name' => 'executive']);
+        $executive->givePermissionTo(Permission::all());
 
         //$primary_owner = Role::create(['name' => 'primary-owner']);
         //$primary_owner->givePermissionTo(Permission::all());
-        $member = Role::create([
+        /*$member = Role::create([
             'name' => 'member',
             'description' => 'REDACTED'
         ]);
@@ -217,17 +241,20 @@ class RolesAndPermissionsSeeder extends Seeder
             maintaining existing users and billing can be added as owners. Owners have almost full control over the account. 
             An account can have multiple owners.',
         ]);
+
         $manager->givePermissionTo(Permission::all()->except([
             'transfer account ownership', 'close account',
             'give special accesses', 'remove special accesses',
             'issue certificates', 'revoke certificates'
         ]));
+
         $admin = Role::create([
             'name' => 'admin',
             'description' => 'Technical administrators have complete control over the files in the account. 
             They can appoint new users and change existing user roles, except Owner roles. They cannot view or manage 
             any billing information. Admins can lock and unlock folders (Enterprise accounts only), making this a powerful role.'
         ]);
+
         $admin->givePermissionTo(Permission::all()->except([
             'change account name',
             'edit account name',
@@ -252,6 +279,7 @@ class RolesAndPermissionsSeeder extends Seeder
             They can appoint new users and change existing user roles, except Owner roles. They cannot view or manage 
             any billing information. Admins can lock and unlock folders (Enterprise accounts only), making this a powerful role.'
         ]);
+
         $editor->givePermissionTo([
             'view files and folders',
             'download files and folders',
@@ -271,6 +299,7 @@ class RolesAndPermissionsSeeder extends Seeder
             so if files are deleted in error, an Owner or Admin user is able to retrieve them for 30 days. 
             If a folder has been locked, Editors and Contributors cannot delete, rename or overwrite any of its files or subfolders.'
         ]);
+
         $contributor->givePermissionTo([
             'view files and folders',
             'download files and folders',
@@ -283,14 +312,17 @@ class RolesAndPermissionsSeeder extends Seeder
             'description' => 'A limited role, Contributor’s can add content to your account – 
             uploading and creating new folders and files. They cannot move, copy, rename or delete any files and folders.'
         ]);
+
         $viewer->givePermissionTo([
             'view files and folders',
             'download files and folders',
         ]);
+
         $billing = Role::create([
             'name' => 'billing', 'description' => 'Ideal for finance and accounting staff, 
             this role gives complete payment and billing capability, with minimal file capability.'
         ]);
+
         $billing->givePermissionTo([
             'view files and folders',
             'download files and folders',
@@ -300,14 +332,17 @@ class RolesAndPermissionsSeeder extends Seeder
             'add and edit billing details',
             'billing email alerts'
         ]);
+
         $securityOfficer = Role::create([
             'name' => 'security officer', 'description' => 'This is an additional role. Security Officers can issue, 
             view, and revoke client certificates.'
         ]);
+
         $securityOfficer->givePermissionTo([
             'issue certificates', 'view certificates', 'revoke certificates'
         ]);
+
         Role::create(['name' => 'lead']);
-        Role::create(['name' => 'client']);
+        Role::create(['name' => 'client']);*/
     }
 }

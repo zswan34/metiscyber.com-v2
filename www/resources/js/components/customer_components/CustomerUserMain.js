@@ -93,7 +93,7 @@ export class CustomerUserMain extends Component {
                     <ReactTooltip />
                     <div className="card col-md-4 col-sm-12 account-right">
                         <div className="card-body">
-                            <a href="/accounts"><i className="lnr lnr-arrow-left"></i> &nbsp; Customers</a>
+                            <a href="/customers"><i className="lnr lnr-arrow-left"></i> &nbsp; Customers</a>
                             <div className="media mt-2">
                                 <img className={"m-auto text-center"} src={user.avatar_url} alt=""
                                      style={{height: '80px', borderRadius: '100%'}}/>
@@ -125,119 +125,99 @@ export class CustomerUserMain extends Component {
                         </div>
                         <hr className="border-light m-0"/>
                         <div className="card-body" style={{maxHeight: '400px', overflow: 'auto'}}>
-                            <h5 className={"mb-4"}>Recent Activity
-                                <small className={'ml-2'}>
-                                    <a href={"/accounts/" + user.uid + '/activity'}>See more</a>
-                                </small>
-                            </h5>
-                            <CustomerUserActivity
-                                authUser={this.state.authUser}
-                                user={this.state.user}
-                                />
+                            <h5>About this customer</h5>
+                            <div className="form-group">
+                                <label htmlFor="customer-name" className="form-label">Name</label>
+                                {(this.userHasPermission('edit users')) ?
+                                    <EditText
+                                        type='text'
+                                        mainContainerClassName={"react-editext-main"}
+                                        saveButtonContent={<i className={'lnr lnr-checkmark-circle text-success'}></i>}
+                                        cancelButtonContent={<i className={'lnr lnr-cross-circle text-danger'}></i>}
+                                        editButtonContent={<span className={'text-primary'}>edit</span>}
+                                        hideIcons={true}
+                                        onSave={this.onSaveInput.bind(this, 'name')}
+                                        value={(user.name === null) ? 'Not set' : user.name}
+                                    />
+                                    :  (user.name === null) ? 'Not set' : user.name}
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="customer-email" className="form-label">Email</label>
+                                {(this.userHasPermission('edit customer')) ?
+                                    <EditText
+                                        type='text'
+                                        mainContainerClassName={"react-editext-main"}
+                                        saveButtonContent={<i className={'lnr lnr-checkmark-circle text-success'}></i>}
+                                        cancelButtonContent={<i className={'lnr lnr-cross-circle text-danger'}></i>}
+                                        editButtonContent={<span className={'text-primary'}>edit</span>}
+                                        hideIcons={true}
+                                        onSave={this.onSaveInput.bind(this, 'email')}
+                                        value={(user.email === null) ? 'Not set' : user.email}
+                                    />
+                                    :  (user.email === null) ? 'Not set' : user.email}
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="customer-phone" className="form-label">Phone</label>
+                                {(this.userHasPermission('edit customer')) ?
+                                    <EditText
+                                        type='text'
+                                        mainContainerClassName={"react-editext-main"}
+                                        saveButtonContent={<i className={'lnr lnr-checkmark-circle text-success'}></i>}
+                                        cancelButtonContent={<i className={'lnr lnr-cross-circle text-danger'}></i>}
+                                        editButtonContent={<span className={'text-primary'}>edit</span>}
+                                        hideIcons={true}
+                                        onSave={this.onSaveInput.bind(this, 'phone')}
+                                        value={(user.phone === null) ? 'Not set' : user.phone}
+                                    />
+                                    :  (user.phone === null) ? 'Not set' : user.phone}
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="customer-phone" className="form-label">Assigned To</label>
+                                {(this.userHasPermission('edit customer')) ?
+                                <select name="assigned_to" id="assigned_to" className="select2 form-control"
+                                style={{width: 'auto', paddingRight: '15px'}}>
+                                    <option value="{user.assigned_to.uid}">{user.assigned_to.name}</option>
+                                </select> :
+                                <span className={"d-block"}>{user.assigned_to.name}</span>}
+                            </div>
+
                         </div>
                     </div>
                     <div className="card col-md-8 col-sm-12 account-left p-0">
-                        <h4 className={"card-header"}>Profile</h4>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-md-6 col-sm-12">
-
-                                    <h5 className={"mb-0 text-primary"}>General Information</h5>
-                                    <hr className={'bg-primary'}/>
-                                    <div className="form-group">
-                                        <label className="form-label italics">SID</label>
-                                        <span className={"d-block"}>{user.sid}</span>
+                        <div className="nav-tabs-top mb-4">
+                            <ul className="nav nav-tabs">
+                                <li className="nav-item">
+                                    <a className="nav-link active" data-toggle="tab" href="#navs-top-account">Account</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" data-toggle="tab" href="#navs-top-profile">Profile</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" data-toggle="tab" href="#navs-top-messages">Messages</a>
+                                </li>
+                            </ul>
+                            <div className="tab-content">
+                                <div className="tab-pane fade active show" id="navs-top-account">
+                                    <div className="card-body">
+                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+                                            Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
                                     </div>
-                                    <div className="form-group">
-                                        <label className="form-label italics">Name</label>
-                                        {(this.userHasPermission('edit users')) ?
-                                            <EditText
-                                                type='text'
-                                                mainContainerClassName={"react-editext-main"}
-                                                saveButtonContent={<i className={'lnr lnr-checkmark-circle text-success'}></i>}
-                                                cancelButtonContent={<i className={'lnr lnr-cross-circle text-danger'}></i>}
-                                                editButtonContent={<span className={'text-primary'}>edit</span>}
-                                                hideIcons={true}
-                                                onSave={this.onSaveInput.bind(this, 'name')}
-                                                value={(user.name === null) ? 'Not set' : user.name}
-                                            />
-                                            :  (user.name === null) ? 'Not set' : user.name}
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="form-label italics">Email</label>
-                                        <span className={"d-block"}>{user.email}</span>
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="form-label italics">Phone</label>
-                                        {(this.userHasPermission('edit users')) ?
-                                            <EditText
-                                                type='tel'
-                                                mainContainerClassName={"react-editext-main"}
-                                                saveButtonContent={<i className={'lnr lnr-checkmark-circle text-success'}></i>}
-                                                cancelButtonContent={<i className={'lnr lnr-cross-circle text-danger'}></i>}
-                                                editButtonContent={<span className={'text-primary'}>edit</span>}
-                                                hideIcons={true}
-                                                onSave={this.onSaveInput.bind(this, 'phone')}
-                                                value={(user.phone === null) ? 'Not set' : user.phone}
-                                            />
-                                            : (user.phone === null) ? 'Not set' : user.phone}
-                                    </div>
-                                    <div className="form-group">
-                                    <label className="form-label italics">Country</label>
-                                        <span className={"d-block"}> {(user.country !== null) ? user.country.toProperCase() : 'N/A'}</span>
                                 </div>
-                                    <div className="form-group">
-                                        <label className="form-label italics">State</label>&nbsp;
-                                        <span className={"d-block"}> {(user.state !== null) ? user.state.toProperCase() : 'N/A'}</span>
+                                <div className="tab-pane fade" id="navs-top-profile">
+                                    <div className="card-body">
+                                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress,
+                                            commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny
+                                            pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
                                     </div>
-                                    <div className="form-group">
-                                        <label className="form-label italics">City</label>
-                                        <span className={"d-block"}> {(user.city !== null) ? user.city.toProperCase() : 'N/A'}</span>
-                                    </div>
-
                                 </div>
-                                <div className="col-md-6 col-sm-12">
-                                    <h5 className={"mb-0 text-primary"}>Account</h5>
-                                    <hr className={'bg-primary'}/>
-                                    <div className="form-group">
-                                        <label className={"form-label italics"}>Account Locked</label>
-                                        <span className={"d-block"}> {(user.locked) ? 'True' : 'False'}</span>
+                                <div className="tab-pane fade" id="navs-top-messages">
+                                    <div className="card-body">
+                                        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy
+                                            salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably
+                                            haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
                                     </div>
-                                    <div className="form-group">
-                                        <label className={"form-label italics"}>Account Verified</label>
-                                        <span className={"d-block"}> {(user.email_verified_at !== null) ? 'True' : 'False'}</span>
-                                    </div>
-                                    {(user.ldap_user) ?
-                                    <div className={"mt-4 mb-3"}>
-                                        <h6 className={"mb-0 text-primary"}>LDAP</h6>
-                                        <hr className={'bg-primary'}/>
-                                        <div className="form-group">
-                                            <label className="form-label italics">CN</label>
-                                            <span className={"d-block"}>{user.meta.ldap.cn}</span>
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="form-label italics">Email</label>
-                                            <span className={"d-block"}>{user.meta.ldap.mail}</span>
-                                        </div>
-
-                                        <div className="form-group">
-                                            <label className="form-label italics">GivenName:</label>
-                                            <span className={"d-block"}>{user.meta.ldap.givenname}</span>
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="form-label italics">SN:</label>
-                                            <span className={"d-block"}>{user.meta.ldap.sn}</span>
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="form-label italics">UID:</label>
-                                            <span className={"d-block"}>{user.meta.ldap.uid}</span>
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="form-label italics">DN:</label>
-                                            <span className={"d-block"}>{user.meta.ldap.dn}</span>
-                                        </div>
-                                    </div>
-                                    : null }
                                 </div>
                             </div>
                         </div>

@@ -84,7 +84,10 @@
             columns: [
                 {name: 'name', data: 'name',
                     render: (data, type, row) => {
-                        return `<a href="${row.url}">${data.toProperCase()}</a>`;
+                        return `<div class="d-inline-block" style="width: 30px; height: 30px;">
+                            <img src="${row.avatar_url}" alt="" class="w-100" style="border-radius: 100%">
+                        </div>
+                        <a class="ml-2" href="${row.url}">${data.toProperCase()}</a>`;
                     }
                 },
                 {name: 'email', data: 'email'},
@@ -99,7 +102,11 @@
                             '<i class="lnr lnr-checkmark-circle text-success"></i> Verified';
                     }
                 }
-            ]
+            ],
+            createdRow: (row) => {
+                let firstCell = $(row).find('td').first();
+                firstCell.css('padding', '8px 15px');
+            }
         });
 
         createCustomerModal.on('hidden.bs.modal', function () {
