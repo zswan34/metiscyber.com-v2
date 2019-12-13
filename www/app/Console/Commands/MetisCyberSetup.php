@@ -18,7 +18,7 @@ class MetisCyberSetup extends Command
      *
      * @var string
      */
-    protected $description = 'Metis Seeder';
+    protected $description = 'Metis Setup';
 
     /**
      * Create a new command instance.
