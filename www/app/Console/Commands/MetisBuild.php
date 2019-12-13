@@ -95,6 +95,9 @@ class MetisBuild extends Command
                 if ($this->ldapCheck($sid, $password)) {
                     $this->info('Authentication successful');
                     return true;
+                } else {
+                    $this->warn('Authentication failed');
+                    return false;
                 }
             }
 
