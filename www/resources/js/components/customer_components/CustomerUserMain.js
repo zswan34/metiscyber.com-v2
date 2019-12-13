@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactTooltip from 'react-tooltip'
+import Select from 'react-select';
 import EditText from 'react-editext';
 
 import CustomerUserActivity from "./CustomerUserActivity";
 import EclipseLoadingComponent from "../loading/EclipseLoadingComponent";
 
-
 const uid = window.location.pathname.split('/')[2];
 const AUTH_USER_URL = '/api/v1/auth/';
 const UPDATE_USER_API = '/api/v1/users/';
 const USER_API_URL = '/api/v1/customers/';
+const LEAD_STATUS_OPTIONS = '/api/v1/lead-statuses?format=react-select';
+const LIFE_CYCLE_OPTIONS = '/api/v1/life-cycles?format=react-select';
 
 export class CustomerUserMain extends Component {
     constructor(props) {
@@ -20,8 +22,32 @@ export class CustomerUserMain extends Component {
             hasErrors: false,
             authUser: [],
             permissions: [],
-            user: []
+            user: [],
+            lifeCycleOptions: [],
+            leadStatusOptions: []
         }
+    }
+
+    fetchLifeCycleOptions() {
+        fetch(LIFE_CYCLE_OPTIONS)
+            .then(response => response.json())
+            .then(result =>
+                this.setState({
+                    lifeCycleOptions: result
+                })
+            )
+            .catch(error => error)
+    }
+
+    fetchLeadStatusOptions() {
+        fetch(LEAD_STATUS_OPTIONS)
+            .then(response => response.json())
+            .then(result =>
+                this.setState({
+                    leadStatusOptions: result,
+                })
+            )
+            .catch(error => error)
     }
 
     fetchAuthUser() {
@@ -60,8 +86,19 @@ export class CustomerUserMain extends Component {
 
     componentDidMount() {
         this.fetchAuthUser();
+        this.fetchLifeCycleOptions();
+        this.fetchLeadStatusOptions();
         this.fetchUser(uid);
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $('.select2').each(function() {
+            $(this)
+                .wrap('<div class="position-relative"></div>')
+                .select2({
+                    placeholder: 'Select value',
+                    dropdownParent: $(this).parent()
+                });
+        });
     }
     updateUser(data) {
         axios.post(UPDATE_USER_API + this.state.user.uid, data)
@@ -78,6 +115,63 @@ export class CustomerUserMain extends Component {
             value: field
         };
         this.updateUser(data);
+    }
+
+    updateLifeCycleSelectElement(event) {
+        let value = $(event.target).val();
+        let data = {
+            field: 'life_cycle',
+            value: value
+        };
+
+        axios.post(UPDATE_USER_API + this.state.user.uid, data)
+            .then((res) => {
+                if (res.data.success) {
+                    this.fetchUser(uid);
+                }
+            })
+    }
+
+    updateLeadStatusSelectElement(event) {
+        let value = $(event.target).val();
+        let data = {
+            field: 'lead_status',
+            value: value
+        };
+
+        axios.post(UPDATE_USER_API + this.state.user.uid, data)
+            .then((res) => {
+                if (res.data.success) {
+                    this.fetchUser(uid);
+                }
+            })
+
+    }
+
+    lifeCycleSelectElement() {
+        return (
+        <select onChange={this.updateLifeCycleSelectElement.bind(this)} value={this.state.user.life_cycle_value}
+                className={"form-control select2"} name={"customer-life-cycle"}>
+            {this.state.lifeCycleOptions.map((lifeCycle, index) => {
+                return (
+                    <option value={lifeCycle.value} key={index}>{lifeCycle.label}</option>
+                )
+            })}
+            </select>
+        )
+    }
+
+    leadStatusSelectElement() {
+        return (
+            <select onChange={this.updateLeadStatusSelectElement.bind(this)} value={this.state.user.lead_status_value}
+                    className={"form-control select2"} name={"customer-lead-status"}>
+                {this.state.leadStatusOptions.map((leadStatus, index) => {
+                    return (
+                        <option value={leadStatus.value} key={index}>{leadStatus.label}</option>
+                    )
+                })}
+            </select>
+        )
     }
 
     render() {
@@ -184,6 +278,20 @@ export class CustomerUserMain extends Component {
                                     <option value="{user.assigned_to.uid}">{user.assigned_to.name}</option>
                                 </select> :
                                 <span className={"d-block"}>{user.assigned_to.name}</span>}
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="customer-life-cycle" className="form-label">Life Cycle</label>
+                                {(Permissions.hasAny(['edit customer', 'edit user'])) ?
+                                    this.lifeCycleSelectElement()
+                                : <span className={"d-block"}>{user.life_cycle_name}</span>}
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="customer-lead-status" className="form-label">Lead Status</label>
+                                {(Permissions.hasAny(['edit customer', 'edit user'])) ?
+                                    this.leadStatusSelectElement()
+                                    : <span className={"d-block"}>{user.lead_status_name}</span>}
                             </div>
 
                         </div>

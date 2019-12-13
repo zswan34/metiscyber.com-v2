@@ -91,7 +91,8 @@ class CustomerController extends Controller
             ->where('users.uid', $customer_uid)
             ->where('users.customer', true)
             ->select('*', 'ut.name as user_type_name', 'users.name as name',
-                'users.id as id', 'lc.value as life_cycle_value', 'ls.value as lead_status_value')
+                'users.id as id', 'lc.value as life_cycle_value', 'lc.name as life_cycle_name',
+                'ls.value as lead_status_value', 'ls.name as lead_status_name')
             ->get();
 
         foreach($users as $user) {

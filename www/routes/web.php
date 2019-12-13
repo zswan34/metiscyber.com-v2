@@ -88,6 +88,9 @@ Route::middleware('auth')->group(function() {
             Route::get('/domains/{domain_account_uid}/{domain_name}/', ['uses' => 'DomainController@getDomainDnsItemsApi'])->name('get-domain-dns-items-api');
             Route::post('domains/{domain_account_id}/{domain_name}/edit-record', ['uses' => 'DomainController@editDnsRecordByName'])->name('post-edit-dns-record');
 
+            Route::get('/life-cycles', ['uses' => 'LifeCycleController@getLifeCycleApi'])->name('get-lead-status-api');
+            Route::get('/lead-statuses', ['uses' => 'LeadStatusController@getLeadStatusApi'])->name('get-life-cycle-api');
+
             Route::get('/roles', ['uses' => 'RolesAndPermissionsController@getRolesApi'])->name('get-roles-api');
             Route::post('/roles/create', ['uses' => 'RolesAndPermissionsController@createRolesApi'])->name('create-roles-api');
             Route::post('/roles/{roles_name}/edit', ['uses' => 'RolesAndPermissionsController@editRolesApi'])->name('edit-roles-api');

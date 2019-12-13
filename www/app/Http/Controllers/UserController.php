@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Adldap\AdldapInterface;
+use App\LeadStatus;
 use App\Libs\Avatar;
 use App\Libs\Ldap;
+use App\LifeCycle;
 use App\User;
 use App\UserSession;
 use Illuminate\Support\Facades\DB;
@@ -85,14 +87,34 @@ class UserController extends Controller
     public function postUserApi($uid) {
         $user = User::findByUid($uid);
 
+        $field = request('field');
+        $value = request('value');
+
+        if ($field === 'life_cycle') {
+            $lifeCycle = LifeCycle::where('value', $value)->first();
+            $field = 'life_cycle_id';
+            $value = $lifeCycle->id;
+        }
+
+        if ($field === 'lead_status') {
+            $leadStatus = LeadStatus::where('value', $value)->first();
+            $field = 'lead_status_id';
+            $value = $leadStatus->id;
+        }
+
         $user->update([
-            request('field') => request('value')
+            $field => $value
         ]);
 
         if ($user->save()) {
             return [
                 'success' => true,
-                'message' => 'Updated user successfully'
+                'message' => 'Updated user successfully',
+                'data' => [
+                    'field' => $field,
+                    'value' => $value
+                ],
+                'user' => $user
             ];
         }
     }
