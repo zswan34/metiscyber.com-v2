@@ -81,7 +81,13 @@ class MetisBuild extends Command
     }
 
     protected function buildProd() {
-
+        $this->comment('Compiling node packages...');
+        exec('npm run prod', $output, $return);
+        if ($return === 0) {
+            $this->info('Build successful');
+        } else {
+            $this->error('Error: unable to complete');
+        }
     }
 
     protected function validated()
