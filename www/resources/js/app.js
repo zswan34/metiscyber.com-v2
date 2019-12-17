@@ -31,3 +31,4 @@ require('./components/account_components/AccountMain');
 require("./components/account_components/AccountUserMain");
 
 require("./components/customer_components/CustomerUserMain");
+require("./components/customer_components/CustomerMainAlt");

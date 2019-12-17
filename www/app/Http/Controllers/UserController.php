@@ -20,7 +20,7 @@ class UserController extends Controller
         $this->ldap = $ldap;
     }
     public function getUsers() {
-        return view('pages.accounts.user-accounts');
+        return view('pages.accounts.user-accounts-v2');
     }
 
     public function getUser($user_uid) {

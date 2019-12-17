@@ -6,6 +6,8 @@ import EditText from 'react-editext';
 
 import CustomerUserActivity from "./CustomerUserActivity";
 import EclipseLoadingComponent from "../loading/EclipseLoadingComponent";
+import CreateCustomerCompanyModal from "./modals/CreateCustomerCompanyModal";
+import CustomerActivityComponent from "./CustomerActivityComponent";
 
 const uid = window.location.pathname.split('/')[2];
 const AUTH_USER_URL = '/api/v1/auth/';
@@ -271,16 +273,6 @@ export class CustomerUserMain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="customer-phone" className="form-label">Assigned To</label>
-                                {(this.userHasPermission('edit customer')) ?
-                                <select name="assigned_to" id="assigned_to" className="select2 form-control"
-                                style={{width: 'auto', paddingRight: '15px'}}>
-                                    <option value="{user.assigned_to.uid}">{user.assigned_to.name}</option>
-                                </select> :
-                                <span className={"d-block"}>{user.assigned_to.name}</span>}
-                            </div>
-
-                            <div className="form-group">
                                 <label htmlFor="customer-life-cycle" className="form-label">Life Cycle</label>
                                 {(Permissions.hasAny(['edit customer', 'edit user'])) ?
                                     this.lifeCycleSelectElement()
@@ -294,13 +286,32 @@ export class CustomerUserMain extends Component {
                                     : <span className={"d-block"}>{user.lead_status_name}</span>}
                             </div>
 
+                            <div className="form-group">
+                                <label htmlFor="customer-phone" className="form-label">Assigned To</label>
+                                {(this.userHasPermission('edit customer')) ?
+                                    <select name="assigned_to" id="assigned_to" className="select2 form-control"
+                                            style={{width: 'auto', paddingRight: '15px'}}>
+                                        <option value="{user.assigned_to.uid}">{user.assigned_to.name}</option>
+                                    </select> :
+                                    <span className={"d-block"}>{user.assigned_to.name}</span>}
+                            </div>
+
                         </div>
                     </div>
                     <div className="card col-md-8 col-sm-12 account-left p-0">
                         <div className="nav-tabs-top mb-4">
                             <ul className="nav nav-tabs">
+
                                 <li className="nav-item">
-                                    <a className="nav-link active" data-toggle="tab" href="#navs-top-account">Account</a>
+                                    <a className="nav-link active" data-toggle="tab" href="#navs-top-activity">Activity</a>
+                                </li>
+
+                                <li className="nav-item">
+                                    <a className="nav-link" data-toggle="tab"
+                                       href={"#navs-top-companies"}>Companies</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" data-toggle="tab" href="#navs-top-account">Account</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" data-toggle="tab" href="#navs-top-profile">Profile</a>
@@ -310,10 +321,23 @@ export class CustomerUserMain extends Component {
                                 </li>
                             </ul>
                             <div className="tab-content">
-                                <div className="tab-pane fade active show" id="navs-top-account">
+                                <div className="tab-pane fade active show" id="navs-top-activity">
                                     <div className="card-body">
-                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
-                                            Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                                        <CustomerActivityComponent
+                                            user={this.state.user}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="tab-pane fade" id="navs-top-companies">
+                                    <div className="card-body">
+                                        <button className="pull-right btn btn-md btn-primary" data-toggle="modal"
+                                                data-target="#create-customer-company-modal">Add Company</button>
+                                    </div>
+                                </div>
+
+                                <div className="tab-pane fade" id="navs-top-account">
+                                    <div className="card-body">
+                                        <p>Account</p>
                                     </div>
                                 </div>
                                 <div className="tab-pane fade" id="navs-top-profile">
@@ -333,6 +357,7 @@ export class CustomerUserMain extends Component {
                             </div>
                         </div>
                     </div>
+                    <CreateCustomerCompanyModal/>
                 </div>
             )
         }

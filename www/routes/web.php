@@ -42,7 +42,6 @@ Route::middleware('auth')->group(function() {
 
         Route::get('/customers', ['uses' => 'CustomerController@getCustomers'])->name('get-customers');
         Route::get('/customers/{customer_uid}', ['uses' => 'CustomerController@getCustomer'])->name('get-customer');
-        Route::post('/customers', ['uses' => 'CustomerController@postCustomersCreate'])->name('post-customers-create');
 
         Route::get('/domains', ['uses' => 'DomainController@getDomainAccounts'])->name('get-domains');
         Route::post('/domains', ['uses' => 'DomainController@postDomains'])->name('post-domains');
@@ -73,6 +72,8 @@ Route::middleware('auth')->group(function() {
         Route::get('/{account_uid}', ['uses' => 'AccountController@getAccount'])->name('get-account');
 
         Route::prefix('/api/v1')->group(function() {
+            Route::post('/customers', ['uses' => 'CustomerController@postCustomersCreate'])->name('post-customers-create');
+
             Route::get('/users', ['uses' => 'UserController@getUsersApi'])->name('get-users-api');
             Route::get('/users/{uid}', ['uses' => 'UserController@getUserApi'])->name('get-user-api');
             Route::post('/users/{uid}', ['uses' => 'UserController@postUserApi'])->name('post-user-api');
@@ -91,6 +92,7 @@ Route::middleware('auth')->group(function() {
             Route::get('/life-cycles', ['uses' => 'LifeCycleController@getLifeCycleApi'])->name('get-lead-status-api');
             Route::get('/lead-statuses', ['uses' => 'LeadStatusController@getLeadStatusApi'])->name('get-life-cycle-api');
 
+            Route::post('/remote/check/{model}/{value}', ['uses' => 'RemoteController@checkRemoteValue'])->name('post-check-remote-value-api');
             Route::get('/roles', ['uses' => 'RolesAndPermissionsController@getRolesApi'])->name('get-roles-api');
             Route::post('/roles/create', ['uses' => 'RolesAndPermissionsController@createRolesApi'])->name('create-roles-api');
             Route::post('/roles/{roles_name}/edit', ['uses' => 'RolesAndPermissionsController@editRolesApi'])->name('edit-roles-api');

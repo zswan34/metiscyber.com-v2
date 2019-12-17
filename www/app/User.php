@@ -99,6 +99,10 @@ class User extends Authenticatable
         return $timezone->value;
     }
 
+    public function tokens() {
+        return $this->hasMany(Token::class);
+    }
+
     public function createSid() {
         $name = explode(' ', $this->getAttribute('name'));
         $limit = 5;

@@ -65976,6 +65976,8 @@ __webpack_require__(/*! ./components/account_components/AccountUserMain */ "./re
 
 __webpack_require__(/*! ./components/customer_components/CustomerUserMain */ "./resources/js/components/customer_components/CustomerUserMain.js");
 
+__webpack_require__(/*! ./components/customer_components/CustomerMainAlt */ "./resources/js/components/customer_components/CustomerMainAlt.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -67398,6 +67400,696 @@ if (document.getElementById('user-account-wrapper')) {
 
 /***/ }),
 
+/***/ "./resources/js/components/customer_components/CustomerActivityComponent.js":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/customer_components/CustomerActivityComponent.js ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CustomerActivityComponent; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _loading_StandardLoadingComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../loading/StandardLoadingComponent */ "./resources/js/components/loading/StandardLoadingComponent.js");
+/* harmony import */ var _loading_EclipseElementLoadingComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../loading/EclipseElementLoadingComponent */ "./resources/js/components/loading/EclipseElementLoadingComponent.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var ACTIVITY_API_URL = '/api/v1/users/';
+
+var CustomerActivityComponent =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CustomerActivityComponent, _Component);
+
+  function CustomerActivityComponent(props) {
+    var _this;
+
+    _classCallCheck(this, CustomerActivityComponent);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CustomerActivityComponent).call(this, props));
+    _this.state = {
+      isLoaded: false,
+      hasErrors: false,
+      user: _this.props.user
+    };
+    return _this;
+  }
+
+  _createClass(CustomerActivityComponent, [{
+    key: "fetchUserActivity",
+    value: function fetchUserActivity() {
+      var _this2 = this;
+
+      fetch(ACTIVITY_API_URL + this.state.user.uid + '/activity').then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this2.setState({
+          activity: result,
+          isLoaded: true
+        });
+      })["catch"](function (error) {
+        return error;
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchUserActivity();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (!this.state.isLoaded) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loading_EclipseElementLoadingComponent__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, this.state.activity.map(function (activity, index) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "card col-6 shadow-lg",
+            key: index
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "media pb-1 mb-3",
+            key: index
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "account-activity-category "
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "media-body ml-3"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "mb-1"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+            className: "font-weight-semibold"
+          }, activity.description), " \xA0"))));
+        }));
+      }
+    }
+  }]);
+
+  return CustomerActivityComponent;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/customer_components/CustomerMainAlt.js":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/customer_components/CustomerMainAlt.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CustomerMainAlt; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_filter_search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-filter-search */ "./node_modules/react-filter-search/es/index.js");
+/* harmony import */ var _loading_EclipseElementLoadingComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../loading/EclipseElementLoadingComponent */ "./resources/js/components/loading/EclipseElementLoadingComponent.js");
+/* harmony import */ var _modals_CreateCustomerModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modals/CreateCustomerModal */ "./resources/js/components/customer_components/modals/CreateCustomerModal.js");
+/* harmony import */ var _loading_EclipseLoadingComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../loading/EclipseLoadingComponent */ "./resources/js/components/loading/EclipseLoadingComponent.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var self = '';
+var LEAD_STATUS_OPTIONS = '/api/v1/lead-statuses?format=react-select';
+var LIFE_CYCLE_OPTIONS = '/api/v1/life-cycles?format=react-select';
+var AUTH_USER_URL = '/api/v1/auth/';
+var CUSTOMER_API_URL = '/api/v1/customers/';
+var USER_ASSIGNABLE = '/api/v1/users?filter=assignable';
+
+var CustomerMainAlt =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CustomerMainAlt, _Component);
+
+  function CustomerMainAlt(props) {
+    var _this;
+
+    _classCallCheck(this, CustomerMainAlt);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CustomerMainAlt).call(this, props));
+    _this.state = {
+      users: [],
+      authUser: [],
+      permissions: [],
+      isLoaded: false,
+      userIsLoading: false,
+      hasErrors: false,
+      value: '',
+      selectedUser: [],
+      lifeCycleOptions: [],
+      leadStatusOptions: [],
+      lifeCycleLoaded: false,
+      leadStatusLoaded: false,
+      usersAssignable: [],
+      fetchingCustomers: true
+    };
+    self = _assertThisInitialized(_this);
+    return _this;
+  }
+
+  _createClass(CustomerMainAlt, [{
+    key: "fetchAuthUser",
+    value: function fetchAuthUser() {
+      var _this2 = this;
+
+      fetch(AUTH_USER_URL).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this2.setState({
+          authUser: result.auth,
+          permissions: result.auth.permissions
+        });
+      })["catch"](function (error) {
+        return error;
+      });
+    }
+  }, {
+    key: "fetchAssignableUsers",
+    value: function fetchAssignableUsers() {
+      var _this3 = this;
+
+      fetch(USER_ASSIGNABLE).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this3.setState({
+          usersAssignable: result.data,
+          isLoaded: true
+        });
+      })["catch"](function (error) {
+        return error;
+      });
+    }
+  }, {
+    key: "fetchCustomers",
+    value: function fetchCustomers() {
+      var _this4 = this;
+
+      fetch(CUSTOMER_API_URL).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this4.setState({
+          users: result.data,
+          fetchingCustomers: false,
+          filteredCustomers: result.data,
+          isLoaded: true
+        });
+      })["catch"](function (error) {
+        return error;
+      });
+    }
+  }, {
+    key: "fetchUser",
+    value: function fetchUser(uid) {
+      var _this5 = this;
+
+      fetch(CUSTOMER_API_URL + uid).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this5.setState({
+          selectedUser: result.data,
+          userIsLoading: false
+        });
+      })["catch"](function (error) {
+        return error;
+      });
+    }
+  }, {
+    key: "fetchLifeCycleOptions",
+    value: function fetchLifeCycleOptions() {
+      var _this6 = this;
+
+      fetch(LIFE_CYCLE_OPTIONS).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this6.setState({
+          lifeCycleOptions: result,
+          lifeCycleLoaded: true
+        });
+      })["catch"](function (error) {
+        return error;
+      });
+    }
+  }, {
+    key: "fetchLeadStatusOptions",
+    value: function fetchLeadStatusOptions() {
+      var _this7 = this;
+
+      fetch(LEAD_STATUS_OPTIONS).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        return _this7.setState({
+          leadStatusOptions: result,
+          leadStatusLoaded: true
+        });
+      })["catch"](function (error) {
+        return error;
+      });
+    }
+  }, {
+    key: "userAssignableSelect",
+    value: function userAssignableSelect() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "form-control select2",
+        name: "customer-assigned-to"
+      }, this.state.usersAssignable.map(function (user, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: user.id,
+          key: index
+        }, user.name.toProperCase() + ' - ' + user.sid);
+      }));
+    }
+  }, {
+    key: "lifeCycleSelectElement",
+    value: function lifeCycleSelectElement() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "form-control select2",
+        name: "customer-life-cycle"
+      }, this.state.lifeCycleOptions.map(function (lifeCycle, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: lifeCycle.value,
+          key: index
+        }, lifeCycle.label);
+      }));
+    }
+  }, {
+    key: "leadStatusSelectElement",
+    value: function leadStatusSelectElement() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "form-control select2",
+        name: "customer-lead-status"
+      }, this.state.leadStatusOptions.map(function (leadStatus, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: leadStatus.value,
+          key: index
+        }, leadStatus.label);
+      }));
+    }
+  }, {
+    key: "onSaveCreate",
+    value: function onSaveCreate(event) {
+      event.preventDefault();
+      $(event.target).validate({
+        rules: {
+          'customer-name': 'required',
+          'customer-email': {
+            email: true,
+            required: true,
+            remote: {
+              url: "/api/v1/remote/check/users/email",
+              type: "post",
+              data: {
+                'customer-email': function customerEmail() {
+                  return $("#customer-email").val();
+                }
+              }
+            }
+          }
+        },
+        messages: {
+          'customer-email': {
+            remote: jQuery.validator.format("{0} is already taken.")
+          }
+        },
+        errorPlacement: function errorPlacement(error, element) {
+          var $parent = $(element).parents('.form-group'); // Do not duplicate errors
+
+          if ($parent.find('.jquery-validation-error').length) {
+            return;
+          }
+
+          $parent.append(error.addClass('jquery-validation-error small form-text invalid-feedback'));
+        },
+        highlight: function highlight(element) {
+          var $el = $(element);
+          var $parent = $el.parents('.form-group');
+          $el.addClass('is-invalid'); // Select2 and Tagsinput
+
+          if ($el.hasClass('select2-hidden-accessible') || $el.attr('data-role') === 'tagsinput') {
+            $el.parent().addClass('is-invalid');
+          }
+        },
+        unhighlight: function unhighlight(element) {
+          $(element).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
+        },
+        submitHandler: function submitHandler(form) {
+          var data = $(form).serialize();
+          axios.post(CUSTOMER_API_URL, data).then(function (res) {
+            console.log(res);
+
+            if (res.data.success) {
+              $("#create-customer-modal").modal('hide');
+              self.fetchCustomers();
+            }
+          });
+        }
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchLeadStatusOptions();
+      this.fetchLifeCycleOptions();
+      this.fetchAssignableUsers();
+      this.fetchAuthUser();
+      this.fetchCustomers();
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      var value = event.target.value;
+      this.setState({
+        value: value
+      });
+    }
+  }, {
+    key: "renderUser",
+    value: function renderUser(event) {
+      var elm = $(event.target);
+      var uid = elm.data('uid');
+      elm.parent().find('div').each(function () {
+        $(this).removeClass('selected');
+      });
+      elm.addClass('selected');
+      this.setState({
+        userIsLoading: true
+      });
+      this.fetchUser(uid);
+    }
+  }, {
+    key: "handleSelectedUser",
+    value: function handleSelectedUser() {
+      if (this.state.userIsLoading) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loading_EclipseElementLoadingComponent__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+      } else {
+        if (this.state.selectedUser.length < 1) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "no-user-selected"
+          }, "Select a user");
+        }
+
+        var user = this.state.selectedUser[0];
+
+        if (user.phone === null) {
+          user.phone = 'Not available';
+        }
+
+        if (user.user_type_name === null) {
+          user.user_type_name = 'not set';
+        }
+
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "mt-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-md-4 col-sm-6"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "account-name",
+          className: "form-label"
+        }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: 'd-block'
+        }, user.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "account-email",
+          className: "form-label"
+        }, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: 'd-block'
+        }, user.email)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "account-phone",
+          className: "form-label"
+        }, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: 'd-block'
+        }, user.phone)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "account-type",
+          className: "form-label"
+        }, "Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: 'd-block'
+        }, user.user_type_name.toProperCase())))));
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this8 = this;
+
+      var _this$state = this.state,
+          users = _this$state.users,
+          value = _this$state.value;
+
+      if (!this.state.isLoaded) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loading_EclipseLoadingComponent__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "d-flex justify-content-between align-items-center w-100 font-weight-bold py-3 mb-4"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Customers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn d-block btn-primary rounded-pill waves-effect",
+          "data-toggle": "modal",
+          "data-target": "#create-customer-modal"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "ion ion-md-add"
+        }), "\xA0 Add Customer")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-6 col-md-8"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group",
+          style: {
+            maxWidth: '200px'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "filter-Customers",
+          className: "form-label"
+        }, "Search"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          type: "search",
+          id: "filter-Customers",
+          name: "filter-Customers",
+          placeholder: 'Enter a name...',
+          value: value,
+          onChange: this.handleChange.bind(this)
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "account-list"
+        }, this.state.fetchingCustomers ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loading_EclipseElementLoadingComponent__WEBPACK_IMPORTED_MODULE_3__["default"], null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_filter_search__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          value: value,
+          data: users,
+          renderResults: function renderResults(results) {
+            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, results.map(function (user, index) {
+              return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                "data-uid": user.uid,
+                className: "account-list-item d-flex",
+                onClick: _this8.renderUser.bind(_this8),
+                key: index
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "account-img-container"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "account-img"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+                src: user.avatar_url,
+                className: "d-block ui-w-40 rounded-circle"
+              }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "account-info"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "account-info-name"
+              }, user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "account-info-sid"
+              }, "@", user.sid)));
+            }));
+          }
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-6 col-md-4"
+        }, this.handleSelectedUser())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "create-customer-modal",
+          className: "modal",
+          tabIndex: "-1",
+          role: "dialog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-dialog",
+          role: "document"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-content"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          onSubmit: this.onSaveCreate.bind(event),
+          id: "create-customer-form",
+          autoComplete: "off"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          className: "modal-title"
+        }, "Add Customer"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "close",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          "aria-hidden": "true"
+        }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-name",
+          className: "form-label"
+        }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          type: "text",
+          id: "customer-name",
+          name: "customer-name",
+          placeholder: "Name"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-email",
+          className: "form-label"
+        }, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          type: "email",
+          id: "customer-email",
+          name: "customer-email",
+          placeholder: "Email"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-phone",
+          className: "form-label"
+        }, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          type: "tel",
+          id: "customer-phone",
+          name: "customer-phone",
+          placeholder: "Phone"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-assigned",
+          className: "form-label"
+        }, "Assign to"), this.userAssignableSelect())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-lead-status",
+          className: "form-label"
+        }, "Status"), this.leadStatusSelectElement()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-life-cycle",
+          className: "form-label"
+        }, "Life Cycle"), this.lifeCycleSelectElement())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "switcher my-1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "checkbox",
+          className: "switcher-input",
+          name: "customer-skip-email-verification"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-indicator"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-yes"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-no"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-label"
+        }, "Skip Email Verification")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "switcher my-1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "checkbox",
+          className: "switcher-input",
+          name: "customer-change-password"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-indicator"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-yes"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-no"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-label"
+        }, "Send information request email"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-footer"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-secondary",
+          "data-dismiss": "modal"
+        }, "Close"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          id: "submit-btn",
+          type: "submit",
+          className: "btn btn-primary"
+        }, "Save changes")))))));
+      }
+    }
+  }]);
+
+  return CustomerMainAlt;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+if (document.getElementById('customer-list-component')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomerMainAlt, null), document.getElementById('customer-list-component'));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/customer_components/CustomerUserActivity.js":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/customer_components/CustomerUserActivity.js ***!
@@ -67603,6 +68295,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_editext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-editext */ "./node_modules/react-editext/dist/index.es.js");
 /* harmony import */ var _CustomerUserActivity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CustomerUserActivity */ "./resources/js/components/customer_components/CustomerUserActivity.js");
 /* harmony import */ var _loading_EclipseLoadingComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../loading/EclipseLoadingComponent */ "./resources/js/components/loading/EclipseLoadingComponent.js");
+/* harmony import */ var _modals_CreateCustomerCompanyModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modals/CreateCustomerCompanyModal */ "./resources/js/components/customer_components/modals/CreateCustomerCompanyModal.js");
+/* harmony import */ var _CustomerActivityComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./CustomerActivityComponent */ "./resources/js/components/customer_components/CustomerActivityComponent.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -67620,6 +68314,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -67963,6 +68659,20 @@ function (_Component) {
         }, user.phone)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-life-cycle",
+          className: "form-label"
+        }, "Life Cycle"), Permissions.hasAny(['edit customer', 'edit user']) ? this.lifeCycleSelectElement() : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.life_cycle_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-lead-status",
+          className: "form-label"
+        }, "Lead Status"), Permissions.hasAny(['edit customer', 'edit user']) ? this.leadStatusSelectElement() : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "d-block"
+        }, user.lead_status_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "customer-phone",
           className: "form-label"
         }, "Assigned To"), this.userHasPermission('edit customer') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
@@ -67977,21 +68687,7 @@ function (_Component) {
           value: "{user.assigned_to.uid}"
         }, user.assigned_to.name)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "d-block"
-        }, user.assigned_to.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "customer-life-cycle",
-          className: "form-label"
-        }, "Life Cycle"), Permissions.hasAny(['edit customer', 'edit user']) ? this.lifeCycleSelectElement() : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "d-block"
-        }, user.life_cycle_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "customer-lead-status",
-          className: "form-label"
-        }, "Lead Status"), Permissions.hasAny(['edit customer', 'edit user']) ? this.leadStatusSelectElement() : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "d-block"
-        }, user.lead_status_name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, user.assigned_to.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card col-md-8 col-sm-12 account-left p-0"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "nav-tabs-top mb-4"
@@ -68001,6 +68697,18 @@ function (_Component) {
           className: "nav-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           className: "nav-link active",
+          "data-toggle": "tab",
+          href: "#navs-top-activity"
+        }, "Activity")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "nav-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "nav-link",
+          "data-toggle": "tab",
+          href: "#navs-top-companies"
+        }, "Companies")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "nav-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "nav-link",
           "data-toggle": "tab",
           href: "#navs-top-account"
         }, "Account")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -68019,10 +68727,26 @@ function (_Component) {
           className: "tab-content"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "tab-pane fade active show",
+          id: "navs-top-activity"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CustomerActivityComponent__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          user: this.state.user
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "tab-pane fade",
+          id: "navs-top-companies"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "pull-right btn btn-md btn-primary",
+          "data-toggle": "modal",
+          "data-target": "#create-customer-company-modal"
+        }, "Add Company"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "tab-pane fade",
           id: "navs-top-account"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card-body"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Account"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "tab-pane fade",
           id: "navs-top-profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -68032,7 +68756,7 @@ function (_Component) {
           id: "navs-top-messages"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card-body"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.")))))));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_CreateCustomerCompanyModal__WEBPACK_IMPORTED_MODULE_7__["default"], null));
       }
     }
   }]);
@@ -68043,6 +68767,467 @@ function (_Component) {
 if (document.getElementById('customer-account-wrapper')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomerUserMain, null), document.getElementById('customer-account-wrapper'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/customer_components/modals/CreateCustomerCompanyModal.js":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/customer_components/modals/CreateCustomerCompanyModal.js ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CreateCustomerCompanyModal; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var CreateCustomerCompanyModal =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CreateCustomerCompanyModal, _Component);
+
+  function CreateCustomerCompanyModal(props) {
+    _classCallCheck(this, CreateCustomerCompanyModal);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(CreateCustomerCompanyModal).call(this, props));
+  }
+
+  _createClass(CreateCustomerCompanyModal, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "create-customer-company-modal",
+        className: "modal",
+        tabIndex: "-1",
+        role: "dialog"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-dialog",
+        role: "document"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "create-customer-company",
+        action: ""
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "modal-title"
+      }, "Add Company"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "close",
+        "data-dismiss": "modal",
+        "aria-label": "Close"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        "aria-hidden": "true"
+      }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group col-md-6 col-sm-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "customer-company-name",
+        className: "form-label"
+      }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: 'form-control',
+        name: 'customer-company-name',
+        id: "customer-company-name"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group col-md-6 col-sm-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "customer-company-domain",
+        className: "form-label"
+      }, "Domain"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: 'form-control',
+        name: 'customer-company-domain',
+        id: "customer-company-domain"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group col-md-6 col-sm-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "customer-company-industry",
+        className: "form-label"
+      }, "Industry"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: 'form-control',
+        name: 'customer-company-industry',
+        id: "customer-company-industry"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group col-md-6 col-sm-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "customer-company-phone",
+        className: "form-label"
+      }, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: 'form-control',
+        name: 'customer-company-phone',
+        id: "customer-company-phone"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group col-md-6 col-sm-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "customer-company-owner",
+        className: "form-label"
+      }, "Company Owner"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: 'form-control',
+        name: 'customer-company-owner',
+        id: "customer-company-owner"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group col-md-6 col-sm-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "customer-company-type",
+        className: "form-label"
+      }, "Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: 'form-control',
+        name: 'customer-company-type',
+        id: "customer-company-type"
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-primary"
+      }, "Save Company"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-secondary",
+        "data-dismiss": "modal"
+      }, "Close"))))));
+    }
+  }]);
+
+  return CreateCustomerCompanyModal;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/customer_components/modals/CreateCustomerModal.js":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/customer_components/modals/CreateCustomerModal.js ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CreateCustomerModal; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+var CREATE_CUSTOMER_API = '/api/v1/customers';
+var SELF = undefined;
+
+var CreateCustomerModal =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CreateCustomerModal, _Component);
+
+  function CreateCustomerModal(props) {
+    var _this;
+
+    _classCallCheck(this, CreateCustomerModal);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CreateCustomerModal).call(this, props));
+    _this.state = {
+      lifeCycleOptions: _this.props.lifeCycleOptions,
+      leadStatusOptions: _this.props.leadStatusOptions,
+      lifeCycleLoaded: _this.props.lifeCycleLoaded,
+      leadStatusLoaded: _this.props.leadStatusLoaded,
+      usersAssignable: _this.props.usersAssignable,
+      updateCustomers: _this.props.updateCustomers.bind(_assertThisInitialized(_this))
+    };
+    return _this;
+  }
+
+  _createClass(CreateCustomerModal, [{
+    key: "userAssignableSelect",
+    value: function userAssignableSelect() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "form-control select2",
+        name: "customer-assigned-to"
+      }, this.state.usersAssignable.map(function (user, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: user.id,
+          key: index
+        }, user.name.toProperCase() + ' - ' + user.sid);
+      }));
+    }
+  }, {
+    key: "lifeCycleSelectElement",
+    value: function lifeCycleSelectElement() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "form-control select2",
+        name: "customer-life-cycle"
+      }, this.state.lifeCycleOptions.map(function (lifeCycle, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: lifeCycle.value,
+          key: index
+        }, lifeCycle.label);
+      }));
+    }
+  }, {
+    key: "leadStatusSelectElement",
+    value: function leadStatusSelectElement() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "form-control select2",
+        name: "customer-lead-status"
+      }, this.state.leadStatusOptions.map(function (leadStatus, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: leadStatus.value,
+          key: index
+        }, leadStatus.label);
+      }));
+    }
+  }, {
+    key: "onSaveCreate",
+    value: function onSaveCreate(event) {
+      var _this2 = this;
+
+      event.preventDefault();
+      $(event.target).validate({
+        rules: {
+          'customer-name': 'required',
+          'customer-email': {
+            email: true,
+            required: true,
+            remote: {
+              url: "/api/v1/remote/check/users/email",
+              type: "post",
+              data: {
+                'customer-email': function customerEmail() {
+                  return $("#customer-email").val();
+                }
+              }
+            }
+          }
+        },
+        messages: {
+          'customer-email': {
+            remote: jQuery.validator.format("{0} is already taken.")
+          }
+        },
+        errorPlacement: function errorPlacement(error, element) {
+          var $parent = $(element).parents('.form-group'); // Do not duplicate errors
+
+          if ($parent.find('.jquery-validation-error').length) {
+            return;
+          }
+
+          $parent.append(error.addClass('jquery-validation-error small form-text invalid-feedback'));
+        },
+        highlight: function highlight(element) {
+          var $el = $(element);
+          var $parent = $el.parents('.form-group');
+          $el.addClass('is-invalid'); // Select2 and Tagsinput
+
+          if ($el.hasClass('select2-hidden-accessible') || $el.attr('data-role') === 'tagsinput') {
+            $el.parent().addClass('is-invalid');
+          }
+        },
+        unhighlight: function unhighlight(element) {
+          $(element).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
+        },
+        submitHandler: function submitHandler(form) {
+          var data = $(form).serialize();
+          axios.post(CREATE_CUSTOMER_API, data).then(function (res) {
+            console.log(res);
+
+            if (res.data.success) {
+              $("#create-customer-modal").modal('hide');
+
+              _this2.state.updateCustomers();
+            }
+          });
+        }
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.leadStatusLoaded && this.state.lifeCycleLoaded) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "create-customer-modal",
+          className: "modal",
+          tabIndex: "-1",
+          role: "dialog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-dialog",
+          role: "document"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-content"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          onSubmit: this.onSaveCreate.bind(event),
+          id: "create-customer-form",
+          autoComplete: "off"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          className: "modal-title"
+        }, "Add Customer"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "close",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          "aria-hidden": "true"
+        }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-name",
+          className: "form-label"
+        }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          type: "text",
+          id: "customer-name",
+          name: "customer-name",
+          placeholder: "Name"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-email",
+          className: "form-label"
+        }, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          type: "email",
+          id: "customer-email",
+          name: "customer-email",
+          placeholder: "Email"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-phone",
+          className: "form-label"
+        }, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          type: "tel",
+          id: "customer-phone",
+          name: "customer-phone",
+          placeholder: "Phone"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-assigned",
+          className: "form-label"
+        }, "Assign to"), this.userAssignableSelect())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-lead-status",
+          className: "form-label"
+        }, "Status"), this.leadStatusSelectElement()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col-md-6 col-sm-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "customer-life-cycle",
+          className: "form-label"
+        }, "Life Cycle"), this.lifeCycleSelectElement())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group col"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "switcher my-1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "checkbox",
+          className: "switcher-input",
+          name: "customer-skip-email-verification"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-indicator"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-yes"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-no"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-label"
+        }, "Skip Email Verification")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "switcher my-1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "checkbox",
+          className: "switcher-input",
+          name: "customer-change-password"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-indicator"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-yes"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-no"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "switcher-label"
+        }, "Send information request email"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-footer"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-secondary",
+          "data-dismiss": "modal"
+        }, "Close"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          id: "submit-btn",
+          type: "submit",
+          className: "btn btn-primary"
+        }, "Save changes"))))));
+      }
+    }
+  }]);
+
+  return CreateCustomerModal;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
 
 /***/ }),
 

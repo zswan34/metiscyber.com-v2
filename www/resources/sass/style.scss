@@ -32,14 +32,15 @@ $breakpoint-tablet: 768px;
 }
 
 .account-list-item {
-  background: #eaeaea;
+  background: #fcfcfc;
   padding: 10px;
   cursor: pointer;
+  border-bottom: 1px solid #f2f2f2;
   &:hover{
-    background: #e2e2e2;
+    background: #f9f9f9;
   }
   &.selected {
-    background: #e2e2e2 !important;
+    background: #f9f9f9 !important;
   }
 }
 
@@ -198,3 +199,26 @@ div[editext="edit-container"] {
 .italics {
   font-style: italic;
 }
+
+.create-card {
+  border: solid 2px #0b76b8;
+  display: inline-flex;
+  padding: 15px;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #f8f8f8;
+  }
+
+  &-icon {
+    color: #0b76b8;
+  }
+  &-body {
+    margin-left: 10px;
+    color: #0b76b8;
+  }
+}
+

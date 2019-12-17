@@ -16,7 +16,7 @@ class CreateTokensTable extends Migration
         Schema::create('tokens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('value')->nullable();
-            $table->enum('type', ['verification', 'password'])->nullable();
+            $table->enum('type', ['sms-verification', 'email-verification', 'password-reset'])->nullable();
             $table->timestamp('expires_on')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();

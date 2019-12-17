@@ -32,17 +32,18 @@
 }
 
 .account-list-item {
-  background: #eaeaea;
+  background: #fcfcfc;
   padding: 10px;
   cursor: pointer;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .account-list-item:hover {
-  background: #e2e2e2;
+  background: #f9f9f9;
 }
 
 .account-list-item.selected {
-  background: #e2e2e2 !important;
+  background: #f9f9f9 !important;
 }
 
 .account-img-container {
@@ -187,6 +188,28 @@ div[editext=edit-container] input {
 
 .italics {
   font-style: italic;
+}
+
+.create-card {
+  border: solid 2px #0b76b8;
+  display: -webkit-inline-box;
+  display: inline-flex;
+  padding: 15px;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.create-card:hover {
+  background: #f8f8f8;
+}
+
+.create-card-icon {
+  color: #0b76b8;
+}
+
+.create-card-body {
+  margin-left: 10px;
+  color: #0b76b8;
 }
 
 @keyframes lds-ripple {

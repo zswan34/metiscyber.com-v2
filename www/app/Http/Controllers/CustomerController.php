@@ -16,7 +16,7 @@ class CustomerController extends Controller
 {
     public function getCustomers()
     {
-        return view('pages.customers.customers');
+        return view('pages.customers.customers-v2');
     }
 
     public function getCustomer($customer_uid)
@@ -36,7 +36,8 @@ class CustomerController extends Controller
         $assignedTo = request('customer-assigned');
         $lifeCycle = LifeCycle::where('value', $cycle)->first();
         $leadStatus = LeadStatus::where('value', $status)->first();
-        $assigned = User::findByUid($assignedTo);
+
+        $assigned = User::find($assignedTo);
 
         $user = new User();
         $user->name = $name;
@@ -46,10 +47,20 @@ class CustomerController extends Controller
         $user->customer = true;
         $user->life_cycle_id = $lifeCycle->id;
         $user->lead_status_id = $leadStatus->id;
-        $user->assigned_to_id = $assigned->id;
+        $user->assigned_to_id = $assignedTo;
         $user->created_by_id = auth()->user()->id;
 
         if ($user->save()) {
+            $session = $user->session()->create();
+
+            activity('user-created')
+                ->on($user)
+                ->withProperties([
+                    'uid' => $user->uid,
+                    'created_from' => 'ldap',
+                    'created_by' => auth()->user()->id,
+                    'session' => $session])
+                ->log('User created successfully');
 
             if (!request('customer-skip-email-verification')) {
                 Mail::to($user->email)
@@ -57,7 +68,8 @@ class CustomerController extends Controller
             }
 
             return [
-                'success' => true
+                'success' => true,
+                'customer' => $user
             ];
         } else {
             return [
@@ -70,7 +82,8 @@ class CustomerController extends Controller
 
     public function getCustomersApi()
     {
-        $customers = User::where('customer', true)->get();
+        $customers = User::where('customer', true)
+            ->orderBy('created_at', 'desc')->get();
         foreach($customers as $customer) {
             $customer->timezone = $customer->getTimezone();
             $customer->avatar_url = Avatar::render($customer->email);
@@ -102,6 +115,7 @@ class CustomerController extends Controller
             $user->avatar_url = Avatar::render($user->email);
             $user->assigned_to = User::where('id', $user->assigned_to_id)
                 ->first(['uid', 'name', 'email']);
+
             if ($user->ldap_user) {
                 $ldapUser = $this->ldap->search()->where('mail', $user->email)->first();
                 $ldap = [

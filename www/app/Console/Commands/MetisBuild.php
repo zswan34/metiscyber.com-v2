@@ -43,6 +43,7 @@ class MetisBuild extends Command
      */
     public function handle()
     {
+        $this->asciiArt();
         $options = $this->choice("What would you like to do?", ['Development', 'Production']);
 
         switch($options) {

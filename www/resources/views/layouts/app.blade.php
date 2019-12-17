@@ -108,7 +108,7 @@
             <div class="layout-content">
 
                 <!-- Content -->
-                <div class="container-fluid flex-grow-1 container-p-y @yield('bg-colors')">
+                <div class="@yield('content-layout', 'container-fluid flex-grow-1 container-p-y') @yield('bg-colors')">
 
                     @yield('content')
 
