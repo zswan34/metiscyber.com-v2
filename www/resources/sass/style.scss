@@ -26,7 +26,7 @@ $breakpoint-tablet: 768px;
 }
 
 .account-list {
-  max-height: 50vh;
+  max-height: 75vh;
   position: relative;
   overflow: auto;
 }
@@ -40,7 +40,7 @@ $breakpoint-tablet: 768px;
     background: #f9f9f9;
   }
   &.selected {
-    background: #f9f9f9 !important;
+    background: #efefef !important;
   }
 }
 

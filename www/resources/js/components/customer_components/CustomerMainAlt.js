@@ -199,7 +199,9 @@ export default class CustomerMainAlt extends Component {
                     .then((res) => {
                         console.log(res);
                         if (res.data.success) {
-                            $("#create-customer-modal").modal('hide');
+                            let $modal = $("#create-customer-modal");
+                            $modal.modal('hide');
+                            $modal.find("input,textarea,select").val('').end();
                             self.fetchCustomers();
                         }
                     })
@@ -294,21 +296,35 @@ export default class CustomerMainAlt extends Component {
         } else {
             return (
                 <div>
-                    <h4 className="d-flex justify-content-between align-items-center w-100 font-weight-bold py-3 mb-4">
-                        <div>Customers</div>
-                        <button type="button" className="btn d-block btn-primary rounded-pill waves-effect"
-                                data-toggle="modal" data-target="#create-customer-modal">
-                            <span className="ion ion-md-add"></span>&nbsp; Add Customer
-                        </button>
-                    </h4>
                     <div className="row">
                         <div className="col-sm-6 col-md-8">
-                            <div className="form-group" style={{maxWidth: '200px'}}>
+                            <h4 className="d-flex justify-content-between align-items-center w-50 font-weight-bold py-3 mb-4"
+                             style={{float: 'left'}}>
+                                Customers
+                                <button type="button" className="btn d-block btn-primary waves-effect btn-sm"
+                                        data-toggle="modal" data-target="#create-customer-modal"
+                                        style={{position: 'absolute', top: '50px'}}>
+                                    <span className="ion ion-md-add"></span>&nbsp; Add Customer
+                                </button>
+                            </h4>
+
+                            <div className="pull-right d-inline-block"
+                                 style={{maxWidth: '200px', position: 'relative', top: '20px'}}>
                                 <label htmlFor="filter-Customers" className="form-label">Search</label>
                                 <input className={"form-control"} type="search" id={"filter-Customers"}
                                        name={"filter-Customers"} placeholder={'Enter a name...'}
                                        value={value}
                                        onChange={this.handleChange.bind(this)}/>
+                            </div>
+                        </div>
+                        <div className="col-sm-6 col-md-4">
+
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-6 col-md-8">
+                            <div className="form-group" style={{maxWidth: '200px'}}>
+
                             </div>
                             <div className="account-list">
                                 {(this.state.fetchingCustomers) ?
@@ -324,15 +340,23 @@ export default class CustomerMainAlt extends Component {
                                                         return (
                                                             <div data-uid={user.uid} className="account-list-item d-flex"
                                                                  onClick={this.renderUser.bind(this)} key={index}>
-                                                                <div className="account-img-container">
-                                                                    <div className="account-img">
-                                                                        <img src={user.avatar_url}
-                                                                             className="d-block ui-w-40 rounded-circle"/>
+                                                                <div className={"col-4"}>
+                                                                    <div className="account-img-container" style={{float: 'left'}}>
+                                                                        <div className="account-img">
+                                                                            <img src={user.avatar_url}
+                                                                                 className="d-block ui-w-40 rounded-circle"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="account-info d-inline-block">
+                                                                        <div className="account-info-name">{user.name}</div>
+                                                                        <div className={"account-info-sid"}>@{user.sid}</div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="account-info">
-                                                                    <div className="account-info-name">{user.name}</div>
-                                                                    <div className={"account-info-sid"}>@{user.sid}</div>
+                                                                <div className={"col-4"}>
+                                                                    Company
+                                                                </div>
+                                                                <div className={"col-4"}>
+                                                                    {user.email}
                                                                 </div>
                                                             </div>
                                                         )

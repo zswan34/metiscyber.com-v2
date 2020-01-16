@@ -67783,7 +67783,9 @@ function (_Component) {
             console.log(res);
 
             if (res.data.success) {
-              $("#create-customer-modal").modal('hide');
+              var $modal = $("#create-customer-modal");
+              $modal.modal('hide');
+              $modal.find("input,textarea,select").val('').end();
               self.fetchCustomers();
             }
           });
@@ -67892,23 +67894,32 @@ function (_Component) {
       if (!this.state.isLoaded) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loading_EclipseLoadingComponent__WEBPACK_IMPORTED_MODULE_5__["default"], null);
       } else {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "d-flex justify-content-between align-items-center w-100 font-weight-bold py-3 mb-4"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Customers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          type: "button",
-          className: "btn d-block btn-primary rounded-pill waves-effect",
-          "data-toggle": "modal",
-          "data-target": "#create-customer-modal"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "ion ion-md-add"
-        }), "\xA0 Add Customer")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-sm-6 col-md-8"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group",
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "d-flex justify-content-between align-items-center w-50 font-weight-bold py-3 mb-4",
           style: {
-            maxWidth: '200px'
+            "float": 'left'
+          }
+        }, "Customers", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn d-block btn-primary waves-effect btn-sm",
+          "data-toggle": "modal",
+          "data-target": "#create-customer-modal",
+          style: {
+            position: 'absolute',
+            top: '50px'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "ion ion-md-add"
+        }), "\xA0 Add Customer")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pull-right d-inline-block",
+          style: {
+            maxWidth: '200px',
+            position: 'relative',
+            top: '20px'
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "filter-Customers",
@@ -67921,7 +67932,18 @@ function (_Component) {
           placeholder: 'Enter a name...',
           value: value,
           onChange: this.handleChange.bind(this)
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-6 col-md-4"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-6 col-md-8"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group",
+          style: {
+            maxWidth: '200px'
+          }
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "account-list"
         }, this.state.fetchingCustomers ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loading_EclipseElementLoadingComponent__WEBPACK_IMPORTED_MODULE_3__["default"], null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_filter_search__WEBPACK_IMPORTED_MODULE_2__["default"], {
           value: value,
@@ -67934,19 +67956,28 @@ function (_Component) {
                 onClick: _this8.renderUser.bind(_this8),
                 key: index
               }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-                className: "account-img-container"
+                className: "col-4"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "account-img-container",
+                style: {
+                  "float": 'left'
+                }
               }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
                 className: "account-img"
               }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
                 src: user.avatar_url,
                 className: "d-block ui-w-40 rounded-circle"
               }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-                className: "account-info"
+                className: "account-info d-inline-block"
               }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
                 className: "account-info-name"
               }, user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
                 className: "account-info-sid"
-              }, "@", user.sid)));
+              }, "@", user.sid))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "col-4"
+              }, "Company"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "col-4"
+              }, user.email));
             }));
           }
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

@@ -26,7 +26,7 @@
 }
 
 .account-list {
-  max-height: 50vh;
+  max-height: 75vh;
   position: relative;
   overflow: auto;
 }
@@ -43,7 +43,7 @@
 }
 
 .account-list-item.selected {
-  background: #f9f9f9 !important;
+  background: #efefef !important;
 }
 
 .account-img-container {
